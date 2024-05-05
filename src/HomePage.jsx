@@ -5,6 +5,7 @@ import { SearchComponent } from "./components/SearchComponent.jsx";
 import Logo from "./components/Logo.jsx";
 import FilterModal from "./components/FilterModal.jsx";
 import { useState } from "react";
+import JobListing from "./components/JobListing.jsx";
 
 const HomePageWrapper = styled.div`
   position: relative;
@@ -28,6 +29,7 @@ const HomePage = () => {
         )}
         <Logo />
         <SearchComponent openModal={openModal} />
+        <JobListing />
       </StyledDevJobContainer>
       <Header />
     </HomePageWrapper>
