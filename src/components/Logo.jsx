@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import LogoSvg from "../desktop/logo.svg";
 import styled from "styled-components";
 
-const StyledLogoLink = styled.a`
+const StyledLogoLink = styled.div`
   margin: 3.2rem 0;
 
   @media (min-width: 768px) {
@@ -15,7 +16,9 @@ const StyledLogo = styled.img`
 const Logo = () => {
   return (
     <StyledLogoLink href="/">
-      <StyledLogo src={LogoSvg} alt="Logo" />
+      <Link to="/">
+        <StyledLogo src={LogoSvg} alt="Logo" />
+      </Link>
     </StyledLogoLink>
   );
 };

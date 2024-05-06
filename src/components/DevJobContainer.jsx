@@ -24,4 +24,13 @@ const StyledDevJobContainer = styled.div`
   }
 `;
 
-export default StyledDevJobContainer;
+const StyledDetailsContainer = styled(StyledDevJobContainer)`
+  max-width: 730px;
+
+  @media (min-width: 1024px) {
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+`;
+
+export { StyledDetailsContainer, StyledDevJobContainer };

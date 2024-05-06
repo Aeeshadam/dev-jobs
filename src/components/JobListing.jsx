@@ -7,6 +7,7 @@ import {
   Country,
   Oval,
   ListingP,
+  StyledLink,
 } from "./JobListing.styles";
 
 const JobListing = () => {
@@ -20,7 +21,9 @@ const JobListing = () => {
             <Oval />
             <ListingP>{job.contract}</ListingP>
           </TimeAndTypeContainer>
-          <h3>{job.position}</h3>
+          <StyledLink to={`/job/${job.id}`}>
+            <h3>{job.position}</h3>
+          </StyledLink>
           <ListingP>{job.company}</ListingP>
           <Country>{job.location}</Country>
         </StyledJobListing>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 const JobListingContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(328px, 1fr));
@@ -65,6 +65,9 @@ const Oval = styled.div`
 const ListingP = styled.p`
   color: var(--color-dark-grey);
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none; /* Remove underline */
+`;
 
 export {
   JobListingContainer,
@@ -74,4 +77,5 @@ export {
   TimeAndTypeContainer,
   Oval,
   ListingP,
+  StyledLink,
 };
