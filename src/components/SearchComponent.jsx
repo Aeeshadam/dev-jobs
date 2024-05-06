@@ -3,7 +3,7 @@ import MobileSearch from "./MobileSearch";
 import { useEffect, useState } from "react";
 
 export const SearchComponent = ({ openModal }) => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
   const [searchValue, setSearchValue] = useState("");
   const [filterByLocation, setFilterByLocation] = useState("");
 
