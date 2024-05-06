@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from "react-redux";
+import { setSearchValue, setModalIsOpen } from "../state/searchSlice";
 import {
   SearchContainer,
   SearchInput,
@@ -8,19 +10,23 @@ import FilterIconSvg from "../mobile/icon-filter.svg";
 import SearchIcon from "../mobile/icon-search.svg";
 import { SecondaryButton } from "./button.style";
 
-const MobileSearch = ({
-  searchValue,
-  setSearchValue,
-  filterByLocation,
-  setFilterByLocation,
-  openModal,
-}) => {
+const MobileSearch = () => {
+  const searchValue = useSelector((state) => state.search.searchValue);
+  const dispatch = useDispatch();
+  const openModal = () => {
+    dispatch(setModalIsOpen(true));
+  };
+
+  const handleSearchInputChange = (e) => {
+    dispatch(setSearchValue(e.target.value));
+  };
+
   return (
     <SearchContainer>
       <SearchInput
         placeholder="Search by tittle"
         value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={handleSearchInputChange}
       />
       <FilterIcon src={FilterIconSvg} alt="filter" onClick={openModal} />
       <SecondaryButton>

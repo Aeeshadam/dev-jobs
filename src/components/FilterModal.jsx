@@ -1,4 +1,6 @@
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setFilterByLocation, setModalIsOpen } from "../state/searchSlice";
 import { SearchInput, Icon, GridItem } from "./SearchComponent.styles";
 import LocationIcon from "../desktop/icon-location.svg";
 import { Button } from "./button.style";
@@ -14,6 +16,7 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 const ModalContainer = styled.div`
@@ -24,7 +27,20 @@ const ModalContainer = styled.div`
   grid-template-rows: repeat(3, 1fr);
 `;
 
-const FilterModal = ({ closeModal }) => {
+const FilterModal = () => {
+  const filterByLocation = useSelector(
+    (state) => state.search.filterByLocation
+  );
+
+  const dispatch = useDispatch();
+
+  const handleLocationFilterChange = (e) => {
+    dispatch(setFilterByLocation(e.target.value));
+  };
+
+  const closeModal = () => {
+    dispatch(setModalIsOpen(false));
+  };
   return (
     <ModalBackground>
       <ModalContainer>
@@ -32,8 +48,8 @@ const FilterModal = ({ closeModal }) => {
           <Icon src={LocationIcon} />
           <SearchInput
             placeholder="Filter by Location"
-            //value={filterByLocation}
-            //onChange={(e) => setFilterByLocation(e.target.value)}
+            value={filterByLocation}
+            onChange={handleLocationFilterChange}
           />
         </GridItem>
         <GridItem>
