@@ -15,13 +15,13 @@ const HomePage = () => {
 
   return (
     <PageWrapper>
+      <Header />
       <StyledDevJobContainer>
         {modalIsOpen && <FilterModal />}
         <Logo />
         <SearchComponent />
         <JobListing />
       </StyledDevJobContainer>
-      <Header />
     </PageWrapper>
   );
 };

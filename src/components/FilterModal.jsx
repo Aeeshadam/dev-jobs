@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { setFilterByLocation, setModalIsOpen } from "../state/searchSlice";
 import { SearchInput, Icon, GridItem } from "./SearchComponent.styles";
 import LocationIcon from "../desktop/icon-location.svg";
-import { Button } from "./button.style";
+import { ButtonGrid } from "./button.style";
 import Checkbox from "./Checkbox";
 
 const ModalBackground = styled.div`
@@ -56,7 +56,7 @@ const FilterModal = () => {
           <Checkbox />
         </GridItem>
 
-        <Button onClick={closeModal}>Search</Button>
+        <ButtonGrid onClick={closeModal}>Search</ButtonGrid>
       </ModalContainer>
     </ModalBackground>
   );

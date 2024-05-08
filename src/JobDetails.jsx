@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import { StyledDetailsContainer } from "./components/DevJobContainer";
 import Logo from "./components/Logo";
 import JobHeaderComponent from "./components/JobHeaderComponent";
+import JobDetailsContent from "./components/JobDetailsContent";
+import Footer from "./components/Footer";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -15,13 +17,18 @@ const JobDetails = () => {
   }
 
   return (
-    <PageWrapper>
-      <StyledDetailsContainer>
-        <Logo />
-        <JobHeaderComponent job={job} />
-      </StyledDetailsContainer>
-      <Header />
-    </PageWrapper>
+    <>
+      <PageWrapper>
+        <Header />
+        <StyledDetailsContainer>
+          <Logo />
+          <JobHeaderComponent job={job} />
+          <JobDetailsContent job={job} />
+        </StyledDetailsContainer>
+      </PageWrapper>
+
+      <Footer />
+    </>
   );
 };
 export default JobDetails;

@@ -27,6 +27,7 @@ body {
   font-optical-sizing: auto;
   background-color: var(--color-midnight);
   min-height: 100vh;
+  padding-bottom: 5rem;
 }
 
 input,
@@ -51,12 +52,21 @@ h3 {
   margin-bottom: 1.2rem;
 }
 
-p {
+p,
+li {
   font-size: 1.6rem;
-  color: var(--color-grey);
+  color: var(--color-dark-grey);
   line-height: 2.6rem;
 }
 
+ul {
+  margin-left: 2.4rem;
+  margin-bottom: 3rem;
+}
+
+ul li::marker {
+  color: #5964e0; /* Change the color of the bullet points */
+}
 h2 {
   font-size: 2.4rem;
   color: var(--color-white);

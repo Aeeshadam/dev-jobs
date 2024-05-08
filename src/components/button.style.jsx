@@ -9,13 +9,18 @@ export const Button = styled.button`
   border-radius: 0.6rem;
   font-size: 1.6rem;
   height: auto;
-  align-self: flex-start;
   cursor: pointer;
+  width: 100%;
 
   @media (min-width: 768px) {
     padding: 1.6rem 3.2rem;
     margin-left: 0;
+    width: auto;
   }
+`;
+
+export const ButtonGrid = styled(Button)`
+  align-self: flex-start;
 `;
 
 export const TertiaryButton = styled(Button)`

@@ -26,6 +26,7 @@ const StyledJobListing = styled.div`
   position: relative;
   padding-left: 3.2rem;
   padding-bottom: 3.2rem;
+  padding-top: 5rem;
 `;
 
 const CompanyLogo = styled.img`
@@ -37,6 +38,7 @@ const CompanyLogo = styled.img`
   border-radius: 0.6rem;
   object-fit: contain;
   padding: 1rem;
+
   background-color: ${(props) => props.color};
 `;
 
@@ -49,7 +51,6 @@ const Country = styled.p`
 
 const TimeAndTypeContainer = styled.div`
   display: flex;
-  margin-top: 5rem;
   gap: 1.2rem;
   margin-bottom: 1.2rem;
   align-items: center;
