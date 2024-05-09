@@ -67,7 +67,7 @@ const ListingP = styled.p`
   color: var(--color-dark-grey);
 `;
 const StyledLink = styled(Link)`
-  text-decoration: none; /* Remove underline */
+  text-decoration: none;
 `;
 
 export {

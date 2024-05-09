@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import data from "./data";
-import PageWrapper from "./components/PageWrapper";
-import Header from "./components/Header";
-import { StyledDetailsContainer } from "./components/DevJobContainer";
-import Logo from "./components/Logo";
-import JobHeaderComponent from "./components/JobHeaderComponent";
-import JobDetailsContent from "./components/JobDetailsContent";
-import Footer from "./components/Footer";
+import data from "../data";
+import PageWrapper from "../components/PageWrapper";
+import Header from "../components/Header";
+import { StyledDetailsContainer } from "../components/DevJobContainer";
+import Logo from "../components/Logo";
+import JobHeaderComponent from "../components/JobHeaderComponent";
+import JobDetailsContent from "../components/JobDetailsContent";
+import Footer from "../components/Footer";
 
 const JobDetails = () => {
   const { id } = useParams();

@@ -12,6 +12,9 @@ export const Button = styled.button`
   cursor: pointer;
   width: 100%;
 
+  &:hover {
+    opacity: 0.9;
+  }
   @media (min-width: 768px) {
     padding: 1.6rem 3.2rem;
     margin-left: 0;
