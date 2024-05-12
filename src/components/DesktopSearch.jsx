@@ -7,8 +7,8 @@ import {
   Icon,
 } from "./SearchComponent.styles";
 import Checkbox from "./Checkbox";
-import SearchIconSvg from "../desktop/icon-search.svg";
-import LocationIconSvg from "../desktop/icon-location.svg";
+import SearchIconSvg from "../assets/desktop/icon-search.svg";
+import LocationIconSvg from "../assets/desktop/icon-location.svg";
 import { Button } from "./button.style";
 
 const DesktopSearch = () => {

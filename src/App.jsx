@@ -3,6 +3,8 @@ import HomePage from "./pages/HomePage";
 import JobDetails from "./pages/JobDetails";
 import PostJobPage from "./pages/PostJobPage";
 function App() {
+  console.log(import.meta.env.VITE_FIREBASE_PRIVATE_KEY);
+  console.log(import.meta.env.VITE_FIREBASE_CONFIG_API_KEY);
   return (
     <Router>
       <Routes>

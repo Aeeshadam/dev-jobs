@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   searchValue: "",
   filterByLocation: "",
+  // eslint-disable-next-line no-undef
   isSmallScreen: window.innerWidth <= 768,
   modalIsOpen: false,
 };

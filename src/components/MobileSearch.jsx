@@ -6,8 +6,8 @@ import {
   Icon,
   FilterIcon,
 } from "./SearchComponent.styles";
-import FilterIconSvg from "../mobile/icon-filter.svg";
-import SearchIcon from "../mobile/icon-search.svg";
+import FilterIconSvg from "../assets/mobile/icon-filter.svg";
+import SearchIcon from "../assets/mobile/icon-search.svg";
 import { SecondaryButton } from "./button.style";
 
 const MobileSearch = () => {

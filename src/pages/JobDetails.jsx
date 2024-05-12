@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import data from "../data";
+import { useDispatch, useSelector } from "react-redux";
 import PageWrapper from "../components/PageWrapper";
 import Header from "../components/Header";
 import { StyledDetailsContainer } from "../components/DevJobContainer";
@@ -9,6 +9,7 @@ import JobDetailsContent from "../components/JobDetailsContent";
 import Footer from "../components/Footer";
 
 const JobDetails = () => {
+  const data = useSelector((state) => state.jobs.jobs);
   const { id } = useParams();
   const job = data.find((job) => job.id === parseInt(id));
 

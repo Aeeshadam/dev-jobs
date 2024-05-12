@@ -18,6 +18,24 @@ const Input = styled.input`
   }
 `;
 
+const StyledSelect = styled.select`
+  width: 100%;
+  height: 4.8rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: var(--color-very-dark);
+  color: var(--color-white);
+  font-size: 1.6rem;
+  padding: 0 1.6rem;
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-dark-grey);
+    opacity: 50%;
+    font-size: 1.5rem;
+  }
+`;
+
 const InputContainer = styled.div`
   margin-bottom: 2.4rem;
   display: flex;
@@ -39,4 +57,4 @@ const PostJobTittle = styled.div`
   }
 `;
 
-export { Input, InputContainer, PostJobTittle };
+export { Input, InputContainer, PostJobTittle, StyledSelect };

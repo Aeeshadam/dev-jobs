@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setFilterByLocation, setModalIsOpen } from "../state/searchSlice";
 import { SearchInput, Icon, GridItem } from "./SearchComponent.styles";
-import LocationIcon from "../desktop/icon-location.svg";
+import LocationIcon from "../assets/desktop/icon-location.svg";
 import { ButtonGrid } from "./button.style";
 import Checkbox from "./Checkbox";
 

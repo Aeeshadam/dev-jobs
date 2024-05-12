@@ -8,15 +8,9 @@ const JobDetailsBody = ({ job }) => {
     <>
       <JobDetailsP>{job.description}</JobDetailsP>
       <h3>Requirements</h3>
-      <JobDetailsP>{job.requirements.content}</JobDetailsP>
-      <ul>
-        {job.requirements.items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-
+      <JobDetailsP>{job.requirements}</JobDetailsP>
       <h3>What You&apos;ll Do</h3>
-      <JobDetailsP>{job.role.content}</JobDetailsP>
+      <JobDetailsP>{job.role}</JobDetailsP>
     </>
   );
 };

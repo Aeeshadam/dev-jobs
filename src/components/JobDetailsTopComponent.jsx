@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from "date-fns";
 import { JobDetailsTop, JobDetailsTopTittle } from "./JobDetailsContent.styles";
 import {
   TimeAndTypeContainer,
@@ -5,21 +6,26 @@ import {
   ListingP,
   Country,
 } from "./JobListing.styles";
-import { Button } from "./button.style";
+import { AnchorButton } from "./button.style";
 
 const JobDetailsTopComponenet = ({ job }) => {
+  const formatTimeDifference = (timestamp) => {
+    return formatDistanceToNow(timestamp, { addSuffix: true });
+  };
   return (
     <JobDetailsTop>
       <JobDetailsTopTittle>
         <TimeAndTypeContainer>
-          <ListingP>{job.postedAt}</ListingP>
+          <ListingP>{formatTimeDifference(job.timestamp)}</ListingP>
           <Oval />
           <ListingP>{job.contract}</ListingP>
         </TimeAndTypeContainer>
         <h3>{job.position}</h3>
         <Country>{job.location}</Country>
       </JobDetailsTopTittle>
-      <Button>Apply Now</Button>
+      <AnchorButton href={job.website} target="_blank">
+        Apply Now
+      </AnchorButton>
     </JobDetailsTop>
   );
 };

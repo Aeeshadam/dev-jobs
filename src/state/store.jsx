@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./searchSlice";
-import addJobReducer from "./addJobSlice";
+import formReducer from "./formSlice";
+import jobsReducer from "./jobsSlice";
 
 const store = configureStore({
   reducer: {
     search: searchReducer,
-    addJob: addJobReducer,
+    addJob: formReducer,
+    jobs: jobsReducer,
   },
 });
 

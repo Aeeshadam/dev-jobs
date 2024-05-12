@@ -10,13 +10,17 @@ const StyledLogoAndButtonContainer = styled.div`
   width: 100%;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const LogoAndButtonContainer = () => {
   return (
     <StyledLogoAndButtonContainer>
       <Logo />
-      <Link to="/post-job">
+      <StyledLink to="/post-job">
         <TertiaryButton>Post A Job</TertiaryButton>
-      </Link>
+      </StyledLink>
     </StyledLogoAndButtonContainer>
   );
 };

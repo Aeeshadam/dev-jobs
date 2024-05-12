@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import desktopHeaderSvg from "../desktop//bg-pattern-header.svg";
+import desktopHeaderSvg from "../assets/desktop/bg-pattern-header.svg";
 
 export const HeaderContainer = styled.div`
   width: 100vw;

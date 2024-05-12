@@ -36,10 +36,7 @@ const CompanyLogo = styled.img`
   width: 5rem;
   height: 5rem;
   border-radius: 0.6rem;
-  object-fit: contain;
-  padding: 1rem;
-
-  background-color: ${(props) => props.color};
+  object-fit: cover;
 `;
 
 const Country = styled.p`

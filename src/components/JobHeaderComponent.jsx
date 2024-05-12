@@ -16,7 +16,9 @@ const JobHeaderComponent = ({ job }) => {
       <JobHeaderRight>
         <h2>{job.company}</h2>
 
-        <TertiaryButton href={job.website}>Company Site</TertiaryButton>
+        <TertiaryButton href={job.website} target="_blank">
+          Company Site
+        </TertiaryButton>
       </JobHeaderRight>
     </JobDetailsHeader>
   );
