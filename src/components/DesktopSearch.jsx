@@ -1,5 +1,3 @@
-import { useSelector, useDispatch } from "react-redux";
-import { setSearchValue, setFilterByLocation } from "../state/searchSlice";
 import {
   SearchContainer,
   GridItem,
@@ -9,20 +7,17 @@ import {
 import Checkbox from "./Checkbox";
 import SearchIconSvg from "../assets/desktop/icon-search.svg";
 import LocationIconSvg from "../assets/desktop/icon-location.svg";
-import { Button } from "./button.style";
+import { useJob } from "../contexts/JobContext";
 
 const DesktopSearch = () => {
-  const searchValue = useSelector((state) => state.search.searchValue);
-  const filterByLocation = useSelector(
-    (state) => state.search.filterByLocation
-  );
-  const dispatch = useDispatch();
+  const { setSearchQuery, setFilterByLocation, searchQuery, filterByLocation } =
+    useJob();
 
   const handleSearchInputChange = (e) => {
-    dispatch(setSearchValue(e.target.value));
+    setSearchQuery(e.target.value);
   };
   const handleLocationFilterChange = (e) => {
-    dispatch(setFilterByLocation(e.target.value));
+    setFilterByLocation(e.target.value);
   };
 
   return (
@@ -31,7 +26,7 @@ const DesktopSearch = () => {
         <Icon src={SearchIconSvg} />
         <SearchInput
           placeholder="Search"
-          value={searchValue}
+          value={searchQuery}
           onChange={handleSearchInputChange}
         />
       </GridItem>
@@ -45,7 +40,6 @@ const DesktopSearch = () => {
       </GridItem>
       <GridItem>
         <Checkbox />
-        <Button>Search</Button>
       </GridItem>
     </SearchContainer>
   );

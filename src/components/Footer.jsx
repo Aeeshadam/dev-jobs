@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useJob } from "../contexts/JobContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { AnchorButton } from "./button.style";
@@ -15,7 +15,7 @@ const FooterContainer = styled.div`
 `;
 
 const Footer = () => {
-  const data = useSelector((state) => state.jobs.jobs);
+  const { data } = useJob();
   const { id } = useParams();
   const job = data.find((job) => job.id === parseInt(id));
   return (

@@ -49,7 +49,7 @@ export const ButtonGrid = styled(Button)`
   align-self: flex-start;
 `;
 
-export const TertiaryButton = styled(AnchorButton)`
+export const TertiaryButton = styled(Button)`
   background-color: var(--color-midnight);
   color: var(--color-primary);
 `;

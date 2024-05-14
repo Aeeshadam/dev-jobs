@@ -9,7 +9,11 @@ const JobHeaderComponent = ({ job }) => {
   return (
     <JobDetailsHeader>
       <JobHeaderImg
-        src={job.logo}
+        src={
+          job.logo
+            ? job.logo
+            : "https://suesys.com/assets/website/images/company-logo-default.png"
+        }
         alt={job.company}
         color={job.logoBackground}
       />

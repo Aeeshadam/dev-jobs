@@ -1,37 +1,34 @@
-import { useSelector, useDispatch } from "react-redux";
-import { setSearchValue, setModalIsOpen } from "../state/searchSlice";
 import {
   SearchContainer,
   SearchInput,
-  Icon,
   FilterIcon,
 } from "./SearchComponent.styles";
 import FilterIconSvg from "../assets/mobile/icon-filter.svg";
 import SearchIcon from "../assets/mobile/icon-search.svg";
 import { SecondaryButton } from "./button.style";
+import { useJob } from "../contexts/JobContext";
 
 const MobileSearch = () => {
-  const searchValue = useSelector((state) => state.search.searchValue);
-  const dispatch = useDispatch();
+  const { searchQuery, setModalIsOpen, setSearchQuery } = useJob();
   const openModal = () => {
-    dispatch(setModalIsOpen(true));
+    setModalIsOpen(true);
   };
 
   const handleSearchInputChange = (e) => {
-    dispatch(setSearchValue(e.target.value));
+    setSearchQuery(e.target.value);
   };
 
   return (
     <SearchContainer>
       <SearchInput
         placeholder="Search by tittle"
-        value={searchValue}
+        value={searchQuery}
         onChange={handleSearchInputChange}
       />
       <FilterIcon src={FilterIconSvg} alt="filter" onClick={openModal} />
-      <SecondaryButton>
+      {/*<SecondaryButton>
         <Icon src={SearchIcon} alt="search" />
-      </SecondaryButton>
+  </SecondaryButton> */}
     </SearchContainer>
   );
 };

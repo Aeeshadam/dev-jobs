@@ -1,10 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { setFilterByLocation, setModalIsOpen } from "../state/searchSlice";
 import { SearchInput, Icon, GridItem } from "./SearchComponent.styles";
 import LocationIcon from "../assets/desktop/icon-location.svg";
 import { ButtonGrid } from "./button.style";
 import Checkbox from "./Checkbox";
+import { useJob } from "../contexts/JobContext";
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -28,18 +27,14 @@ const ModalContainer = styled.div`
 `;
 
 const FilterModal = () => {
-  const filterByLocation = useSelector(
-    (state) => state.search.filterByLocation
-  );
-
-  const dispatch = useDispatch();
+  const { filterByLocation, setFilterByLocation, setModalIsOpen } = useJob();
 
   const handleLocationFilterChange = (e) => {
-    dispatch(setFilterByLocation(e.target.value));
+    setFilterByLocation(e.target.value);
   };
 
   const closeModal = () => {
-    dispatch(setModalIsOpen(false));
+    setModalIsOpen(false);
   };
   return (
     <ModalBackground>

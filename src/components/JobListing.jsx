@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
 import { formatDistanceToNow } from "date-fns";
-import { fetchJobs } from "../actions/jobsThunks";
+import { useJob } from "../contexts/JobContext";
+
 import {
   JobListingContainer,
   StyledJobListing,
@@ -10,31 +10,31 @@ import {
   Oval,
   ListingP,
   StyledLink,
+  ContractP,
 } from "./JobListing.styles";
-import { useEffect } from "react";
 
 const JobListing = () => {
-  const data = useSelector((state) => state.jobs.jobs);
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.jobs.isLoading);
-  const error = useSelector((state) => state.jobs.error);
+  const { filteredJobs } = useJob();
 
   const formatTimeDifference = (timestamp) => {
     return formatDistanceToNow(timestamp, { addSuffix: true });
   };
-  useEffect(() => {
-    dispatch(fetchJobs());
-  }, [dispatch]);
 
   return (
     <JobListingContainer>
-      {data.map((job) => (
+      {filteredJobs.map((job) => (
         <StyledJobListing key={job.id}>
-          <CompanyLogo src={job.logo} />
+          <CompanyLogo
+            src={
+              job.logo
+                ? job.logo
+                : "https://suesys.com/assets/website/images/company-logo-default.png"
+            }
+          />
           <TimeAndTypeContainer>
             <ListingP>{formatTimeDifference(job.timestamp)}</ListingP>
             <Oval />
-            <ListingP>{job.contract}</ListingP>
+            <ContractP>{job.contract}</ContractP>
           </TimeAndTypeContainer>
           <StyledLink to={`/job/${job.id}`}>
             <h3>{job.position}</h3>

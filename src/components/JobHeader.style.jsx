@@ -24,8 +24,9 @@ const JobHeaderImg = styled.img`
   transform: translateX(-50%) translateY(-240%);
   width: 5rem;
   height: 5rem;
-  object-fit: contain;
-  padding: 1rem;
+  object-fit: cover;
+  border: 1px solid var(--color-primary);
+
   border-radius: 0.6rem;
 
   background-color: ${(props) => props.color};
@@ -36,7 +37,7 @@ const JobHeaderImg = styled.img`
     top: auto;
     left: auto;
     transform: none;
-    padding: 3.2rem;
+    border: none;
   }
 `;
 

@@ -6,11 +6,23 @@ const JobDetailsP = styled.p`
 const JobDetailsBody = ({ job }) => {
   return (
     <>
-      <JobDetailsP>{job.description}</JobDetailsP>
+      <JobDetailsP>
+        {job.description
+          ? job.description
+          : "This job was posted with no description. Please follow the link to the website for more information"}
+      </JobDetailsP>
       <h3>Requirements</h3>
-      <JobDetailsP>{job.requirements}</JobDetailsP>
-      <h3>What You&apos;ll Do</h3>
-      <JobDetailsP>{job.role}</JobDetailsP>
+      <JobDetailsP>
+        {job.requirements
+          ? job.requirements
+          : "This job was posted with no description. Please follow the link to the website for more information"}
+      </JobDetailsP>
+      {job.role !== "" && (
+        <>
+          <h3>What You&apos;ll Do</h3>
+          <JobDetailsP>{job.role}</JobDetailsP>
+        </>
+      )}
     </>
   );
 };

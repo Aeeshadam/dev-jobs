@@ -63,6 +63,10 @@ const Oval = styled.div`
 const ListingP = styled.p`
   color: var(--color-dark-grey);
 `;
+
+const ContractP = styled(ListingP)`
+  text-transform: capitalize;
+`;
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
@@ -76,4 +80,5 @@ export {
   Oval,
   ListingP,
   StyledLink,
+  ContractP,
 };
