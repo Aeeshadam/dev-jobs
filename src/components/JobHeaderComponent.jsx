@@ -2,8 +2,8 @@ import {
   JobDetailsHeader,
   JobHeaderImg,
   JobHeaderRight,
-} from "./JobHeader.style";
-import { TertiaryButton } from "./button.style";
+} from "../styles/JobHeader.style";
+import { TertiaryButton } from "../styles/button.style";
 
 const JobHeaderComponent = ({ job }) => {
   return (

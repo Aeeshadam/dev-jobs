@@ -41,6 +41,9 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+const SelectContainer = styled.div`
+  width: 100%;
+`;
 
 const PostJobTittle = styled.div`
   width: 100%;
@@ -57,4 +60,4 @@ const PostJobTittle = styled.div`
   }
 `;
 
-export { Input, InputContainer, PostJobTittle, StyledSelect };
+export { Input, InputContainer, SelectContainer, PostJobTittle, StyledSelect };

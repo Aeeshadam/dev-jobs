@@ -1,12 +1,15 @@
 import { formatDistanceToNow } from "date-fns";
-import { JobDetailsTop, JobDetailsTopTittle } from "./JobDetailsContent.styles";
+import {
+  JobDetailsTop,
+  JobDetailsTopTittle,
+} from "../styles/JobDetailsContent.styles";
 import {
   TimeAndTypeContainer,
   Oval,
   ListingP,
   Country,
-} from "./JobListing.styles";
-import { AnchorButton } from "./button.style";
+} from "../styles/JobListing.styles";
+import { AnchorButton } from "../styles/button.style";
 
 const JobDetailsTopComponenet = ({ job }) => {
   const formatTimeDifference = (timestamp) => {

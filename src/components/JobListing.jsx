@@ -11,10 +11,10 @@ import {
   ListingP,
   StyledLink,
   ContractP,
-} from "./JobListing.styles";
+} from "../styles/JobListing.styles";
 
 const JobListing = () => {
-  const { filteredJobs } = useJob();
+  const { filteredJobsByContract } = useJob();
 
   const formatTimeDifference = (timestamp) => {
     return formatDistanceToNow(timestamp, { addSuffix: true });
@@ -22,7 +22,7 @@ const JobListing = () => {
 
   return (
     <JobListingContainer>
-      {filteredJobs.map((job) => (
+      {filteredJobsByContract.map((job) => (
         <StyledJobListing key={job.id}>
           <CompanyLogo
             src={

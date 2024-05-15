@@ -42,7 +42,6 @@ const FormProvider = ({ children }) => {
     };
     addJob(newJobData);
     emptyFields();
-    console.log(data);
   };
 
   const formState = {

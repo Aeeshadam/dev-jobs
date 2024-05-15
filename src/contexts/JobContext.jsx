@@ -1,5 +1,12 @@
 import { useContext, useEffect, createContext, useState } from "react";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  DocumentReference,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../../firebase.config";
 
 const JobContext = createContext();
@@ -11,6 +18,7 @@ function JobProvider({ children }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterByLocation, setFilterByLocation] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [filterByContract, setFilterByContract] = useState();
   // eslint-disable-next-line no-undef
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
 
@@ -18,7 +26,10 @@ function JobProvider({ children }) {
     try {
       setIsLoading(true);
       const jobsCollection = await getDocs(collection(db, "jobs"));
-      const jobsData = jobsCollection.docs.map((doc) => doc.data());
+      const jobsData = jobsCollection.docs.map((doc) => ({
+        ...doc.data(),
+        firestoreId: doc.id,
+      }));
       setData(jobsData);
     } catch (error) {
       setError(error.message);
@@ -40,7 +51,23 @@ function JobProvider({ children }) {
         timestamp: currentTimeStamp,
       };
       await addDoc(collection(db, "jobs"), newJobDataWithTimestamp);
-      setData([...data, newJobDataWithTimestamp]);
+      setData([
+        ...data,
+        { ...newJobDataWithTimestamp, firestoreId: DocumentReference.id },
+      ]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function deleteJob(firestoreId) {
+    try {
+      setIsLoading(true);
+      await deleteDoc(doc(db, "jobs", firestoreId)); // Ensure ID is a string
+      setData(data.filter((job) => job.firestoreId !== firestoreId));
+      console.log(`Deleted job with Firestore ID: ${firestoreId}`);
     } catch (error) {
       console.log(error);
     } finally {
@@ -54,13 +81,19 @@ function JobProvider({ children }) {
       )
     : data;
 
-  const filteredJobs = filterByLocation
+  const filteredJobsByLocation = filterByLocation
     ? searchedJobs.filter((job) => {
         return job.location
           .toLowerCase()
           .includes(filterByLocation.toLowerCase());
       })
     : searchedJobs;
+
+  const filteredJobsByContract = filterByContract
+    ? filteredJobsByLocation.filter((job) => {
+        return job.contract === filterByContract;
+      })
+    : filteredJobsByLocation;
 
   return (
     <JobContext.Provider
@@ -79,7 +112,11 @@ function JobProvider({ children }) {
         setIsSmallScreen,
         fetchJobs,
         searchedJobs,
-        filteredJobs,
+        filteredJobsByLocation,
+        deleteJob,
+        filterByContract,
+        setFilterByContract,
+        filteredJobsByContract,
       }}
     >
       {children}

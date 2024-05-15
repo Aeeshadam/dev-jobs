@@ -1,9 +1,12 @@
+import Select from "react-select";
 import styled from "styled-components";
-import { SearchInput, Icon, GridItem } from "./SearchComponent.styles";
+import { SearchInput, Icon, GridItem } from "../styles/SearchComponent.styles";
 import LocationIcon from "../assets/desktop/icon-location.svg";
-import { ButtonGrid } from "./button.style";
+import { ButtonGrid } from "../styles/button.style";
 import Checkbox from "./Checkbox";
 import { useJob } from "../contexts/JobContext";
+import { optionsContract, colorStyles } from "../styles/CustomSelect";
+import { SelectContainer } from "../styles/Form.style";
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -27,10 +30,20 @@ const ModalContainer = styled.div`
 `;
 
 const FilterModal = () => {
-  const { filterByLocation, setFilterByLocation, setModalIsOpen } = useJob();
+  const {
+    filterByLocation,
+    setFilterByLocation,
+    setModalIsOpen,
+    filterByContract,
+    setFilterByContract,
+  } = useJob();
 
   const handleLocationFilterChange = (e) => {
     setFilterByLocation(e.target.value);
+  };
+
+  const handleContractChange = (selectedOption) => {
+    setFilterByContract(selectedOption ? selectedOption.value : "");
   };
 
   const closeModal = () => {
@@ -48,10 +61,20 @@ const FilterModal = () => {
           />
         </GridItem>
         <GridItem>
-          <Checkbox />
+          <SelectContainer>
+            <Select
+              options={optionsContract}
+              value={optionsContract.find(
+                (option) => option.value === filterByContract
+              )}
+              onChange={handleContractChange}
+              styles={colorStyles}
+              placeholder="Filter Jobs by Contract Type "
+            />
+          </SelectContainer>
         </GridItem>
 
-        <ButtonGrid onClick={closeModal}>Search</ButtonGrid>
+        <ButtonGrid onClick={closeModal}>Return</ButtonGrid>
       </ModalContainer>
     </ModalBackground>
   );

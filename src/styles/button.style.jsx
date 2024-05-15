@@ -22,6 +22,17 @@ export const Button = styled.button`
   }
 `;
 
+export const DeleteButton = styled(Button)`
+  background-color: transparent;
+  border: 1px solid red;
+  color: var(--color-white);
+  transition: all 0.3s linear;
+
+  &:hover {
+    background-color: #973434;
+  }
+`;
+
 export const AnchorButton = styled.a`
   background-color: var(--color-primary);
   color: var(--color-white);

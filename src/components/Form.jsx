@@ -1,10 +1,9 @@
 import { useCountries } from "use-react-countries";
-import { useNavigate } from "react-router-dom";
-import { colorStyles } from "./CustomSelect";
 import Select from "react-select";
-import { optionsContract } from "./CustomSelect";
-import { InputContainer, Input, PostJobTittle } from "./Form.style";
-import { Button } from "./button.style";
+import { useNavigate } from "react-router-dom";
+import { colorStyles, optionsContract } from "../styles/CustomSelect";
+import { InputContainer, Input, PostJobTittle } from "../styles/Form.style";
+import { Button } from "../styles/button.style";
 import { useForm } from "../contexts/FormContext";
 
 const Form = () => {

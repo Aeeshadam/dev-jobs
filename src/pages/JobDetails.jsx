@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import PageWrapper from "../components/PageWrapper";
 import Header from "../components/Header";
 import { StyledDetailsContainer } from "../components/DevJobContainer";
@@ -10,13 +9,9 @@ import Footer from "../components/Footer";
 import { useJob } from "../contexts/JobContext";
 
 const JobDetails = () => {
-  const { data, fetchJobs } = useJob();
+  const { data } = useJob();
   const { id } = useParams();
   const job = data.find((job) => job.id === parseInt(id));
-
-  useEffect(() => {
-    fetchJobs();
-  }, []);
 
   //To do: add loading indicator
   if (!data.length) {

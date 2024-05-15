@@ -1,7 +1,7 @@
-import { useJob } from "../contexts/JobContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { AnchorButton } from "./button.style";
+import { useJob } from "../contexts/JobContext";
+import { AnchorButton } from "../styles/button.style";
 
 const FooterContainer = styled.div`
   background-color: var(--color-very-dark);

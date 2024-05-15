@@ -7,7 +7,6 @@ export const SearchContainer = styled.div`
   align-items: center;
   font-size: 1.6rem;
   border-radius: 0.6rem;
-  overflow: hidden;
   background-color: var(--color-very-dark);
   padding: 1.6rem;
   width: 100%;
@@ -29,10 +28,13 @@ export const GridItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.4rem 1.6rem;
+  padding-bottom: 1.6rem;
+  box-sizing: border-box;
+  border-radius: 0.6rem;
 
   @media (min-width: 768px) {
     padding: 1.6rem;
+    width: 100%;
   }
 `;
 
