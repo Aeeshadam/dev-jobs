@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 .env
-firebase-service.json
 import-data.cjs
 data.cjs
 # Editor directories and files
