@@ -1,6 +1,5 @@
 import { useContext, useEffect, createContext, useState } from "react";
 import {
-  DocumentReference,
   addDoc,
   collection,
   deleteDoc,
@@ -19,7 +18,6 @@ function JobProvider({ children }) {
   const [filterByLocation, setFilterByLocation] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filterByContract, setFilterByContract] = useState();
-  // eslint-disable-next-line no-undef
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
 
   async function fetchJobs() {
@@ -50,10 +48,13 @@ function JobProvider({ children }) {
         ...newJobData,
         timestamp: currentTimeStamp,
       };
-      await addDoc(collection(db, "jobs"), newJobDataWithTimestamp);
+      const docRef = await addDoc(
+        collection(db, "jobs"),
+        newJobDataWithTimestamp
+      );
       setData([
         ...data,
-        { ...newJobDataWithTimestamp, firestoreId: DocumentReference.id },
+        { ...newJobDataWithTimestamp, firestoreId: docRef.id },
       ]);
     } catch (error) {
       console.log(error);
@@ -65,9 +66,8 @@ function JobProvider({ children }) {
   async function deleteJob(firestoreId) {
     try {
       setIsLoading(true);
-      await deleteDoc(doc(db, "jobs", firestoreId)); // Ensure ID is a string
+      await deleteDoc(doc(db, "jobs", firestoreId));
       setData(data.filter((job) => job.firestoreId !== firestoreId));
-      console.log(`Deleted job with Firestore ID: ${firestoreId}`);
     } catch (error) {
       console.log(error);
     } finally {

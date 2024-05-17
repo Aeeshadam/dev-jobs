@@ -68,7 +68,7 @@ const Form = () => {
           />
         </InputContainer>
         <InputContainer>
-          <label htmlFor="location">Enter location</label>
+          <label htmlFor="location">Select location</label>
 
           <Select
             options={options}
@@ -79,7 +79,7 @@ const Form = () => {
         </InputContainer>
 
         <InputContainer>
-          <label htmlFor="contract">Enter type of contract</label>
+          <label htmlFor="contract">Select type of contract</label>
 
           <Select
             options={optionsContract}

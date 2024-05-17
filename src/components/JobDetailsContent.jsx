@@ -9,14 +9,20 @@ const JobDetails = ({ job }) => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    deleteJob(job.firestoreId);
-    navigate("/");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this job?"
+    );
+
+    if (confirmDelete) {
+      deleteJob(job.firestoreId);
+      navigate("/");
+    }
   };
   return (
     <JobDetailsContainer>
       <JobDetailsTopComponenet job={job} />
       <JobDetailsBody job={job} />
-      <DeleteButton>Delete Job</DeleteButton>
+      <DeleteButton onClick={handleDelete}>Delete Job</DeleteButton>
     </JobDetailsContainer>
   );
 };
