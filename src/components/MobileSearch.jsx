@@ -4,8 +4,6 @@ import {
   FilterIcon,
 } from "../styles/SearchComponent.styles";
 import FilterIconSvg from "../assets/mobile/icon-filter.svg";
-import SearchIcon from "../assets/mobile/icon-search.svg";
-import { SecondaryButton } from "../styles/button.style";
 import { useJob } from "../contexts/JobContext";
 
 const MobileSearch = () => {

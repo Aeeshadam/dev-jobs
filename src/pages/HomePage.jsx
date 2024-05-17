@@ -1,11 +1,11 @@
 import { useJob } from "../contexts/JobContext.jsx";
 import Header from "../components/Header.jsx";
-import { StyledDevJobContainer } from "../components/DevJobContainer.jsx";
+import { StyledDevJobContainer } from "../styles/DevJobContainer.jsx";
 import { SearchComponent } from "../components/SearchComponent.jsx";
 import LogoAndButtonContainer from "../components/LogoAndButtonContainer.jsx";
 import FilterModal from "../components/FilterModal.jsx";
 import JobListing from "../components/JobListing.jsx";
-import PageWrapper from "../components/PageWrapper.jsx";
+import PageWrapper from "../styles/PageWrapper.jsx";
 import Message from "../components/Message.jsx";
 
 const HomePage = () => {

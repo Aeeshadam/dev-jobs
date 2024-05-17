@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
-import PageWrapper from "../components/PageWrapper";
-import Header from "../components/Header";
-import { StyledDetailsContainer } from "../components/DevJobContainer";
+import PageContainer from "../components/PageContainer.jsx";
 import Logo from "../components/Logo";
 import JobHeaderComponent from "../components/JobHeaderComponent";
 import JobDetailsContent from "../components/JobDetailsContent";
@@ -24,15 +22,11 @@ const JobDetails = () => {
 
   return (
     <>
-      <PageWrapper>
-        <Header />
-        <StyledDetailsContainer>
-          <Logo />
-          <JobHeaderComponent job={job} />
-          <JobDetailsContent job={job} />
-        </StyledDetailsContainer>
-      </PageWrapper>
-
+      <PageContainer>
+        <Logo />
+        <JobHeaderComponent job={job} />
+        <JobDetailsContent job={job} />
+      </PageContainer>
       <Footer />
     </>
   );

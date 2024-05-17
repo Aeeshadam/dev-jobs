@@ -6,7 +6,7 @@ import { AnchorButton } from "../styles/button.style";
 const FooterContainer = styled.div`
   background-color: var(--color-very-dark);
   width: 100%;
-  padding: 2.4rem;
+  padding: 3rem;
   text-align: center;
   position: fixed;
   bottom: 0;

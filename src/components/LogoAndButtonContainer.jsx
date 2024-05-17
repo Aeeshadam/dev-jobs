@@ -12,15 +12,19 @@ const StyledLogoAndButtonContainer = styled.div`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  color: var(--color-white);
 `;
 
 const LogoAndButtonContainer = () => {
   return (
     <StyledLogoAndButtonContainer>
       <Logo />
-      <StyledLink to="/post-job">
-        <TertiaryButton>Post A Job</TertiaryButton>
+      <StyledLink to="/login">
+        <TertiaryButton>Log In</TertiaryButton>
       </StyledLink>
+      {/* <StyledLink to="/post-job">
+        <TertiaryButton>Post A Job</TertiaryButton>
+      </StyledLink>*/}
     </StyledLogoAndButtonContainer>
   );
 };

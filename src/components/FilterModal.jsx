@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { SearchInput, Icon, GridItem } from "../styles/SearchComponent.styles";
 import LocationIcon from "../assets/desktop/icon-location.svg";
 import { ButtonGrid } from "../styles/button.style";
-import Checkbox from "./Checkbox";
 import { useJob } from "../contexts/JobContext";
 import { optionsContract, colorStyles } from "../styles/CustomSelect";
 import { SelectContainer } from "../styles/Form.style";
