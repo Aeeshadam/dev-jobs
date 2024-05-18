@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import PageContainer from "../components/PageContainer.jsx";
 import Logo from "../components/Logo.jsx";
+import { useAuth } from "../contexts/AuthContext.jsx";
 import {
   StyledAuthContainer,
   StyledInput,
@@ -8,12 +10,30 @@ import {
   StyledLink,
   StyledH2,
   SmallText,
-} from "../styles/SignIn-Up.style";
-import { useState } from "react";
+  ErrorMessage,
+} from "../styles/SignIn-Up.style.jsx";
+const SignUpPage = () => {
+  const navigate = useNavigate();
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    error,
+    emptyState,
+    signUp,
+  } = useAuth();
 
-const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await signUp();
+    if (success) {
+      emptyState();
+      navigate("/");
+    }
+  };
   return (
     <PageContainer>
       <Logo />
@@ -37,8 +57,17 @@ const SignUp = () => {
             placeholder="Password"
           />
         </InputContainer>
-        <LoginButton>Log In</LoginButton>
-
+        <InputContainer>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <StyledInput
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            type="password"
+            placeholder="Confirm Password"
+          />
+        </InputContainer>
+        <LoginButton onClick={handleSubmit}>Sign Up</LoginButton>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <SmallText>
           Have an account? or go to &nbsp;
           <StyledLink to="/login">
@@ -50,4 +79,4 @@ const SignUp = () => {
     </PageContainer>
   );
 };
-export default SignUp;
+export default SignUpPage;

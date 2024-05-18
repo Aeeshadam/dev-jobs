@@ -43,6 +43,10 @@ const StyledH2 = styled.h2`
 const SmallText = styled.p`
   font-size: 1.4rem;
 `;
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 1.4rem;
+`;
 export {
   StyledAuthContainer,
   StyledInput,
@@ -52,4 +56,5 @@ export {
   StyledLink,
   StyledH2,
   SmallText,
+  ErrorMessage,
 };
