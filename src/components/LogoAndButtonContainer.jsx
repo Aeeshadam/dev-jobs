@@ -7,23 +7,39 @@ import { useAuth } from "../contexts/AuthContext";
 const StyledLogoAndButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   width: 100%;
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: var(--color-white);
+  font-size: 1.2rem;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
   }
 `;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  margin: 2rem 0;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 1.6rem;
+  }
 `;
 
 const LogoAndButtonContainer = () => {

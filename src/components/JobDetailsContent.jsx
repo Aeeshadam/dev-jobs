@@ -3,25 +3,39 @@ import { JobDetailsContainer } from "../styles/JobDetailsContent.styles";
 import JobDetailsBody from "./JobDetailsBody";
 import { DeleteButton } from "../styles/button.style";
 import { useJob } from "../contexts/JobContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "../styles/SignIn-Up.style";
+import { useEffect } from "react";
 const JobDetails = ({ job }) => {
-  const { deleteJob } = useJob();
+  const { deleteJob, error, setError } = useJob();
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleDelete = () => {
+  useEffect(() => {
+    setError("");
+    window.scrollTo(0, 0);
+  }, [job, currentUser, setError]);
+  const handleDelete = async () => {
+    if (!currentUser || currentUser.uid !== job.postedBy) {
+      return setError("Yo can only delete your own jobs!");
+    }
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this job?"
     );
 
     if (confirmDelete) {
-      deleteJob(job.firestoreId);
-      navigate("/");
+      const success = await deleteJob(job.firestoreId, job.postedBy);
+      if (success) {
+        navigate("/");
+      }
     }
   };
   return (
     <JobDetailsContainer>
       <JobDetailsTopComponenet job={job} />
       <JobDetailsBody job={job} />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <DeleteButton onClick={handleDelete}>Delete Job</DeleteButton>
     </JobDetailsContainer>
   );

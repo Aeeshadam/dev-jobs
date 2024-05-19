@@ -3,7 +3,7 @@ import {
   JobHeaderImg,
   JobHeaderRight,
 } from "../styles/JobHeader.style";
-import { TertiaryButton } from "../styles/button.style";
+import { TertiaryLink } from "../styles/button.style";
 
 const JobHeaderComponent = ({ job }) => {
   return (
@@ -20,9 +20,9 @@ const JobHeaderComponent = ({ job }) => {
       <JobHeaderRight>
         <h2>{job.company}</h2>
 
-        <TertiaryButton href={job.website} target="_blank">
+        <TertiaryLink href={job.website} target="_blank">
           Company Site
-        </TertiaryButton>
+        </TertiaryLink>
       </JobHeaderRight>
     </JobDetailsHeader>
   );

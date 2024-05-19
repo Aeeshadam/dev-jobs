@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [error, setError] = useState("");
+  const [authError, setAuthError] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
   const logIn = async () => {
     if (!loginEmail || !loginPassword) {
-      setError("Please fill in all fields");
+      setAuthError("Please fill in all fields");
       return false;
     }
     try {
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
       setCurrentUser(user);
       return true;
     } catch (error) {
-      setError(error.message);
+      setAuthError(error.message);
       return false;
     }
   };
@@ -58,18 +58,18 @@ const AuthProvider = ({ children }) => {
       setCurrentUser(user);
       return true;
     } catch (error) {
-      setError(error.message);
+      setAuthError(error.message);
       return false;
     }
   };
   const signUp = async () => {
-    setError("");
+    setAuthError("");
     if (!email || !password || !confirmPassword) {
-      setError("Please fill in all fields");
+      setAuthError("Please fill in all fields");
       return false;
     }
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      setAuthError("Passwords do not match");
       return false;
     }
     try {
@@ -78,7 +78,7 @@ const AuthProvider = ({ children }) => {
       return true;
     } catch (error) {
       console.log("SignUp Error:", error.message);
-      setError(error.message);
+      setAuthError(error.message);
       return false;
     }
   };
@@ -95,7 +95,7 @@ const AuthProvider = ({ children }) => {
     setConfirmPassword("");
     setLoginEmail("");
     setLoginPassword("");
-    setError("");
+    setAuthError("");
   };
 
   return (
@@ -111,7 +111,7 @@ const AuthProvider = ({ children }) => {
         setLoginEmail,
         loginPassword,
         setLoginPassword,
-        error,
+        authError,
         signUp,
         emptyState,
         logIn,

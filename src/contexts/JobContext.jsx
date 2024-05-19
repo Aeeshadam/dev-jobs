@@ -7,6 +7,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
+import { useAuth } from "./AuthContext";
 
 const JobContext = createContext();
 
@@ -19,7 +20,7 @@ function JobProvider({ children }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [filterByContract, setFilterByContract] = useState();
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
-
+  const { currentUser } = useAuth();
   async function fetchJobs() {
     try {
       setIsLoading(true);
@@ -47,6 +48,7 @@ function JobProvider({ children }) {
       const newJobDataWithTimestamp = {
         ...newJobData,
         timestamp: currentTimeStamp,
+        postedBy: currentUser.uid,
       };
       const docRef = await addDoc(
         collection(db, "jobs"),
@@ -57,19 +59,33 @@ function JobProvider({ children }) {
         { ...newJobDataWithTimestamp, firestoreId: docRef.id },
       ]);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
   }
 
-  async function deleteJob(firestoreId) {
+  async function deleteJob(firestoreId, postedBy) {
+    if (!currentUser) {
+      setError("You must be logged in to delete a job");
+      console.log("You must be logged in to delete a job");
+      return false;
+    }
+    if (currentUser.uid !== postedBy) {
+      setError("You are not authorized to delete this job");
+      console.log("You are not authorized to delete this job");
+      return false;
+    }
+
     try {
       setIsLoading(true);
       await deleteDoc(doc(db, "jobs", firestoreId));
       setData(data.filter((job) => job.firestoreId !== firestoreId));
+      return true;
     } catch (error) {
-      console.log(error);
+      setError(error.message);
+      console.error(error);
+      return false;
     } finally {
       setIsLoading(false);
     }
@@ -117,6 +133,7 @@ function JobProvider({ children }) {
         filterByContract,
         setFilterByContract,
         filteredJobsByContract,
+        setError,
       }}
     >
       {children}

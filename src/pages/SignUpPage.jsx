@@ -21,7 +21,7 @@ const SignUpPage = () => {
     setPassword,
     confirmPassword,
     setConfirmPassword,
-    error,
+    authError,
     emptyState,
     signUp,
   } = useAuth();
@@ -67,7 +67,7 @@ const SignUpPage = () => {
           />
         </InputContainer>
         <LoginButton onClick={handleSubmit}>Sign Up</LoginButton>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {authError && <ErrorMessage>{authError}</ErrorMessage>}
         <SmallText>
           Have an account? or go to &nbsp;
           <StyledLink to="/login">

@@ -21,7 +21,7 @@ const LogInPage = () => {
     setLoginEmail,
     loginPassword,
     setLoginPassword,
-    error,
+    authError,
     emptyState,
     logIn,
     logInDemo,
@@ -70,7 +70,7 @@ const LogInPage = () => {
         </InputContainer>
         <LoginButton onClick={handleSubmit}>Log In</LoginButton>
         <DemoButton onClick={handleLoginDemo}>Demo Login</DemoButton>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {authError && <ErrorMessage>{authError}</ErrorMessage>}
         <SmallText>
           Don&apos;t have an account?{" "}
           <StyledLink to="/signup">

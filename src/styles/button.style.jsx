@@ -65,6 +65,11 @@ export const TertiaryButton = styled(Button)`
   color: var(--color-primary);
 `;
 
+export const TertiaryLink = styled(AnchorButton)`
+  background-color: var(--color-midnight);
+  color: var(--color-primary);
+`;
+
 export const SecondaryButton = styled.button`
   background-color: var(--color-primary);
   color: var(--color-white);

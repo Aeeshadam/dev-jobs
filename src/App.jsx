@@ -9,9 +9,9 @@ import { FormProvider } from "../src/contexts/FormContext";
 import { AuthProvider } from "../src/contexts/AuthContext";
 function App() {
   return (
-    <JobProvider>
-      <FormProvider>
-        <AuthProvider>
+    <AuthProvider>
+      <JobProvider>
+        <FormProvider>
           <Router>
             <Routes>
               <Route exact path="/" element={<HomePage />}></Route>
@@ -21,9 +21,9 @@ function App() {
               <Route path="/signup" element={<SignUpPage />}></Route>
             </Routes>
           </Router>
-        </AuthProvider>
-      </FormProvider>
-    </JobProvider>
+        </FormProvider>
+      </JobProvider>
+    </AuthProvider>
   );
 }
 
