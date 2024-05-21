@@ -66,17 +66,6 @@ function JobProvider({ children }) {
   }
 
   async function deleteJob(firestoreId, postedBy) {
-    if (!currentUser) {
-      setError("You must be logged in to delete a job");
-      console.log("You must be logged in to delete a job");
-      return false;
-    }
-    if (currentUser.uid !== postedBy) {
-      setError("You are not authorized to delete this job");
-      console.log("You are not authorized to delete this job");
-      return false;
-    }
-
     try {
       setIsLoading(true);
       await deleteDoc(doc(db, "jobs", firestoreId));
@@ -90,6 +79,8 @@ function JobProvider({ children }) {
       setIsLoading(false);
     }
   }
+
+  const myJobs = data.filter((job) => job.postedBy === currentUser?.uid);
 
   const searchedJobs = searchQuery
     ? data.filter((job) =>
@@ -134,6 +125,7 @@ function JobProvider({ children }) {
         setFilterByContract,
         filteredJobsByContract,
         setError,
+        myJobs,
       }}
     >
       {children}

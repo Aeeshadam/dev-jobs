@@ -1,13 +1,15 @@
 import PageContainer from "../components/PageContainer.jsx";
-import Logo from "../components/Logo.jsx";
 import Form from "../components/Form.jsx";
+import Navbar from "../components/Navbar.jsx";
 
 const PostJobPage = () => {
   return (
-    <PageContainer>
-      <Logo />
-      <Form />
-    </PageContainer>
+    <>
+      <Navbar />
+      <PageContainer>
+        <Form />
+      </PageContainer>
+    </>
   );
 };
 export default PostJobPage;

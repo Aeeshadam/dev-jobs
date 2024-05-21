@@ -8,12 +8,11 @@ const JobDetailsHeader = styled.div`
   text-align: center;
   border-radius: 0.8rem;
   background-color: var(--color-very-dark);
-  margin-top: 1rem;
   position: relative;
+
   @media (min-width: 768px) {
     flex-direction: row;
     text-align: left;
-    margin-top: 0;
   }
 `;
 

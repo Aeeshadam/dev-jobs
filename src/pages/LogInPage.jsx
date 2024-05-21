@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PageContainer from "../components/PageContainer.jsx";
 import Logo from "../components/Logo.jsx";
+import Navbar from "../components/Navbar.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import {
   StyledAuthContainer,
@@ -46,39 +47,41 @@ const LogInPage = () => {
   };
 
   return (
-    <PageContainer>
-      <Logo />
-      <StyledAuthContainer>
-        <StyledH2>Log In</StyledH2>
-        <InputContainer>
-          <label htmlFor="email">Email</label>
-          <StyledInput
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
-            type="email"
-            placeholder="Email address"
-          />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="password">Password</label>
-          <StyledInput
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-          />
-        </InputContainer>
-        <LoginButton onClick={handleSubmit}>Log In</LoginButton>
-        <DemoButton onClick={handleLoginDemo}>Demo Login</DemoButton>
-        {authError && <ErrorMessage>{authError}</ErrorMessage>}
-        <SmallText>
-          Don&apos;t have an account?{" "}
-          <StyledLink to="/signup">
-            <span>Sign Up</span>
-          </StyledLink>
-        </SmallText>
-      </StyledAuthContainer>
-    </PageContainer>
+    <>
+      <Navbar />
+      <PageContainer>
+        <StyledAuthContainer>
+          <StyledH2>Log In</StyledH2>
+          <InputContainer>
+            <label htmlFor="email">Email</label>
+            <StyledInput
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              type="email"
+              placeholder="Email address"
+            />
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="password">Password</label>
+            <StyledInput
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
+          </InputContainer>
+          <LoginButton onClick={handleSubmit}>Log In</LoginButton>
+          <DemoButton onClick={handleLoginDemo}>Demo Login</DemoButton>
+          {authError && <ErrorMessage>{authError}</ErrorMessage>}
+          <SmallText>
+            Don&apos;t have an account?{" "}
+            <StyledLink to="/signup">
+              <span>Sign Up</span>
+            </StyledLink>
+          </SmallText>
+        </StyledAuthContainer>
+      </PageContainer>
+    </>
   );
 };
 export default LogInPage;

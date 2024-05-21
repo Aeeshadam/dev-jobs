@@ -18,7 +18,7 @@ const JobDetails = ({ job }) => {
   }, [job, currentUser, setError]);
   const handleDelete = async () => {
     if (!currentUser || currentUser.uid !== job.postedBy) {
-      return setError("Yo can only delete your own jobs!");
+      return setError("You can only delete your own jobs!");
     }
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this job?"
@@ -36,7 +36,9 @@ const JobDetails = ({ job }) => {
       <JobDetailsTopComponenet job={job} />
       <JobDetailsBody job={job} />
       {error && <ErrorMessage>{error}</ErrorMessage>}
-      <DeleteButton onClick={handleDelete}>Delete Job</DeleteButton>
+      {currentUser && currentUser.uid === job.postedBy && (
+        <DeleteButton onClick={handleDelete}>Delete Job</DeleteButton>
+      )}
     </JobDetailsContainer>
   );
 };

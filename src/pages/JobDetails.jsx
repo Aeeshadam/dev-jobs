@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import PageContainer from "../components/PageContainer.jsx";
-import Logo from "../components/Logo";
 import JobHeaderComponent from "../components/JobHeaderComponent";
 import JobDetailsContent from "../components/JobDetailsContent";
 import Footer from "../components/Footer";
 import { useJob } from "../contexts/JobContext";
+import Navbar from "../components/Navbar";
 
 const JobDetails = () => {
   const { data } = useJob();
@@ -22,8 +22,8 @@ const JobDetails = () => {
 
   return (
     <>
+      <Navbar />
       <PageContainer>
-        <Logo />
         <JobHeaderComponent job={job} />
         <JobDetailsContent job={job} />
       </PageContainer>

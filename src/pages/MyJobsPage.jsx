@@ -3,13 +3,13 @@ import Header from "../components/Header.jsx";
 import { StyledDevJobContainer } from "../styles/DevJobContainer.jsx";
 import { SearchComponent } from "../components/SearchComponent.jsx";
 import FilterModal from "../components/FilterModal.jsx";
-import JobListing from "../components/JobListing.jsx";
+import MyJobListing from "../components/MyJobListing.jsx";
 import Message from "../components/Message.jsx";
 import Navbar from "../components/Navbar.jsx";
 import { LayOut } from "../styles/DevJobContainer.jsx";
 
-const HomePage = () => {
-  const { modalIsOpen, filteredJobsByContract, isLoading } = useJob();
+const MyJobsPage = () => {
+  const { modalIsOpen, myJobs, isLoading } = useJob();
 
   return (
     <>
@@ -20,13 +20,14 @@ const HomePage = () => {
           {modalIsOpen && <FilterModal />}
           <SearchComponent />
           {isLoading && <Message message="🔘 Loading..." />}
-          {filteredJobsByContract.length === 0 && !isLoading && (
+          {myJobs.length === 0 && !isLoading && (
             <Message message="There are no jobs matching your search criteria 😃" />
           )}
-          <JobListing />
+          <MyJobListing />
         </StyledDevJobContainer>
       </LayOut>
     </>
   );
 };
-export default HomePage;
+
+export default MyJobsPage;

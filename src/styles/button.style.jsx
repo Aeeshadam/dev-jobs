@@ -63,6 +63,7 @@ export const ButtonGrid = styled(Button)`
 export const TertiaryButton = styled(Button)`
   background-color: var(--color-midnight);
   color: var(--color-primary);
+  padding: 1rem 1.4rem;
 `;
 
 export const TertiaryLink = styled(AnchorButton)`

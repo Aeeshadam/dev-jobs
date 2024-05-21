@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PageContainer from "../components/PageContainer.jsx";
-import Logo from "../components/Logo.jsx";
+import Navbar from "../components/Navbar.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import {
   StyledAuthContainer,
@@ -35,48 +35,50 @@ const SignUpPage = () => {
     }
   };
   return (
-    <PageContainer>
-      <Logo />
-      <StyledAuthContainer>
-        <StyledH2>Sign Up</StyledH2>
-        <InputContainer>
-          <label htmlFor="email">Email</label>
-          <StyledInput
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email address"
-          />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="password">Password</label>
-          <StyledInput
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-          />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <StyledInput
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            type="password"
-            placeholder="Confirm Password"
-          />
-        </InputContainer>
-        <LoginButton onClick={handleSubmit}>Sign Up</LoginButton>
-        {authError && <ErrorMessage>{authError}</ErrorMessage>}
-        <SmallText>
-          Have an account? or go to &nbsp;
-          <StyledLink to="/login">
-            <span>Log in</span>
-          </StyledLink>
-          &nbsp; for demo access
-        </SmallText>
-      </StyledAuthContainer>
-    </PageContainer>
+    <>
+      <Navbar />
+      <PageContainer>
+        <StyledAuthContainer>
+          <StyledH2>Sign Up</StyledH2>
+          <InputContainer>
+            <label htmlFor="email">Email</label>
+            <StyledInput
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Email address"
+            />
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="password">Password</label>
+            <StyledInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
+          </InputContainer>
+          <InputContainer>
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <StyledInput
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              type="password"
+              placeholder="Confirm Password"
+            />
+          </InputContainer>
+          <LoginButton onClick={handleSubmit}>Sign Up</LoginButton>
+          {authError && <ErrorMessage>{authError}</ErrorMessage>}
+          <SmallText>
+            Have an account? or go to &nbsp;
+            <StyledLink to="/login">
+              <span>Log in</span>
+            </StyledLink>
+            &nbsp; for demo access
+          </SmallText>
+        </StyledAuthContainer>
+      </PageContainer>
+    </>
   );
 };
 export default SignUpPage;

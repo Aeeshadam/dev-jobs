@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
-import LogoSvg from "../assets/desktop/logo.svg";
 import styled from "styled-components";
 
-const StyledLogoLink = styled.div`
-  margin: 3.2rem 0;
-
-  @media (min-width: 768px) {
-    margin: 4.4rem 0;
-  }
+const StyledLogoLink = styled(Link)`
+  margin: 1rem 0;
+  text-decoration: none;
 `;
 
-const StyledLogo = styled.img`
+const StyledLogo = styled.h2`
   cursor: pointer;
 `;
 const Logo = () => {
   return (
-    <StyledLogoLink href="/">
-      <Link to="/">
-        <StyledLogo src={LogoSvg} alt="Logo" />
-      </Link>
+    <StyledLogoLink to="/">
+      <StyledLogo>devJobs</StyledLogo>
     </StyledLogoLink>
   );
 };

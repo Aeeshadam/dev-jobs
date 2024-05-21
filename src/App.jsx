@@ -7,6 +7,8 @@ import SignUpPage from "./pages/SignUpPage";
 import { JobProvider } from "../src/contexts/JobContext";
 import { FormProvider } from "../src/contexts/FormContext";
 import { AuthProvider } from "../src/contexts/AuthContext";
+import MyJobsPage from "./pages/MyJobsPage";
+
 function App() {
   return (
     <AuthProvider>
@@ -19,6 +21,7 @@ function App() {
               <Route path="/post-job" element={<PostJobPage />}></Route>
               <Route path="/login" element={<LogInPage />}></Route>
               <Route path="/signup" element={<SignUpPage />}></Route>
+              <Route path="/my-jobs" element={<MyJobsPage />}></Route>
             </Routes>
           </Router>
         </FormProvider>
