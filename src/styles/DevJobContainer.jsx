@@ -11,6 +11,7 @@ const StyledDevJobContainer = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
+    padding: 0 6rem;
   }
 `;
 

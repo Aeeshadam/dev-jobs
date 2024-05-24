@@ -1,73 +1,57 @@
 import { createContext, useContext, useState } from "react";
 import { useJob } from "./JobContext";
+
 const FormContext = createContext();
 
 const FormProvider = ({ children }) => {
-  const [company, setCompany] = useState("");
-  const [position, setPosition] = useState("");
-  const [location, setLocation] = useState("United Kingdom");
-  const [contract, setContract] = useState("Full Time");
-  const [website, setWebsite] = useState("");
-  const [description, setDescription] = useState("");
-  const [requirements, setRequirements] = useState("");
-  const [logo, setLogo] = useState("");
-  const [role, setRole] = useState("");
+  const [formState, setFormState] = useState({
+    company: "",
+    position: "",
+    location: "United Kingdom",
+    contract: "Full Time",
+    website: "",
+    description: "",
+    requirements: "",
+    logo: "",
+    role: "",
+  });
+
   const { addJob, data } = useJob();
 
-  const emptyFields = () => {
-    setCompany("");
-    setPosition("");
-    setLocation("");
-    setContract("");
-    setWebsite("");
-    setDescription("");
-    setRequirements("");
-    setLogo("");
-    setRole("");
+  const updateField = (field, value) => {
+    setFormState((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
   };
 
-  const handleFormSubmit = (e) => {
-    const id = data.length > 0 ? Math.max(...data.map((job) => job.id)) + 1 : 2;
-    const newJobData = {
-      company,
-      position,
-      location,
-      contract,
-      website,
-      description,
-      requirements,
-      role,
-      logo,
-      id,
-    };
+  const clearFormFields = () => {
+    setFormState({
+      company: "",
+      position: "",
+      location: "United Kingdom",
+      contract: "Full Time",
+      website: "",
+      description: "",
+      requirements: "",
+      logo: "",
+      role: "",
+    });
+  };
+
+  const handleFormSubmit = () => {
+    const id = data.length > 0 ? Math.max(...data.map((job) => job.id)) + 1 : 1;
+    const newJobData = { ...formState, id };
     addJob(newJobData);
-    emptyFields();
-  };
-
-  const formState = {
-    company,
-    setCompany,
-    position,
-    setPosition,
-    location,
-    setLocation,
-    contract,
-    setContract,
-    website,
-    setWebsite,
-    description,
-    setDescription,
-    requirements,
-    setRequirements,
-    logo,
-    setLogo,
-    role,
-    setRole,
-    handleFormSubmit,
+    clearFormFields();
   };
 
   return (
-    <FormContext.Provider value={formState}>{children}</FormContext.Provider>
+    <FormContext.Provider
+      value={{ ...formState, updateField, handleFormSubmit }}
+    >
+      {children}
+    </FormContext.Provider>
   );
 };
 

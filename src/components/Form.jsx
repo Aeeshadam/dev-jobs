@@ -12,23 +12,15 @@ const Form = () => {
 
   const {
     company,
-    setCompany,
     position,
-    setPosition,
     location,
-    setLocation,
     contract,
-    setContract,
     website,
-    setWebsite,
     description,
-    setDescription,
     requirements,
-    setRequirements,
     logo,
-    setLogo,
     role,
-    setRole,
+    updateField,
     handleFormSubmit,
   } = useForm();
 
@@ -54,7 +46,7 @@ const Form = () => {
             type="text"
             placeholder="Company"
             value={company}
-            onChange={(e) => setCompany(e.target.value)}
+            onChange={(e) => updateField("company", e.target.value)}
           />
         </InputContainer>
         <InputContainer>
@@ -64,7 +56,7 @@ const Form = () => {
             type="text"
             placeholder="Position"
             value={position}
-            onChange={(e) => setPosition(e.target.value)}
+            onChange={(e) => updateField("position", e.target.value)}
           />
         </InputContainer>
         <InputContainer>
@@ -73,7 +65,9 @@ const Form = () => {
           <Select
             options={options}
             value={options.find((option) => option.value === location)}
-            onChange={(selectedOption) => setLocation(selectedOption.value)}
+            onChange={(selectedOption) =>
+              updateField("location", selectedOption.value)
+            }
             styles={colorStyles}
           />
         </InputContainer>
@@ -84,7 +78,9 @@ const Form = () => {
           <Select
             options={optionsContract}
             value={optionsContract.find((option) => option.value === contract)}
-            onChange={(selectedOption) => setContract(selectedOption.value)}
+            onChange={(selectedOption) =>
+              updateField("contract", selectedOption.value)
+            }
             styles={colorStyles}
           />
         </InputContainer>
@@ -95,14 +91,14 @@ const Form = () => {
             type="text"
             placeholder="Link to Apply"
             value={website}
-            onChange={(e) => setWebsite(e.target.value)}
+            onChange={(e) => updateField("website", e.target.value)}
           />
         </InputContainer>
         <InputContainer>
           <label htmlFor="logo">Upload Company Logo Link</label>
           <Input
             type="text"
-            onChange={(e) => setLogo(e.target.value)}
+            onChange={(e) => updateField("logo", e.target.value)}
             value={logo}
             placeholder="www.Logo.com"
           />
@@ -113,7 +109,7 @@ const Form = () => {
             type="text"
             placeholder="Role Description"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => updateField("description", e.target.value)}
           />
         </InputContainer>
         <InputContainer>
@@ -122,7 +118,7 @@ const Form = () => {
             type="text"
             placeholder="Requirements"
             value={requirements}
-            onChange={(e) => setRequirements(e.target.value)}
+            onChange={(e) => updateField("requirements", e.target.value)}
           />
         </InputContainer>
         <InputContainer>
@@ -131,7 +127,7 @@ const Form = () => {
             type="text"
             placeholder="Role Information"
             value={role}
-            onChange={(e) => setRole(e.target.value)}
+            onChange={(e) => updateField("role", e.target.value)}
           />
         </InputContainer>
 
