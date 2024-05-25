@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Logo from "./Logo";
 import {
@@ -14,7 +14,10 @@ import {
 } from "../styles/Navbar.styles";
 
 const Navbar = () => {
+  const navRef = useRef();
+  const [open, setOpen] = useState(false);
   const { currentUser, logOut } = useAuth();
+  const navigateTo = useNavigate();
 
   const handleLogout = async () => {
     const confirmation = window.confirm("Are you sure you want to log out?");
@@ -22,6 +25,7 @@ const Navbar = () => {
     if (confirmation) {
       try {
         await logOut();
+        navigateTo("/");
       } catch (error) {
         console.error("Error during logout:", error);
       }
@@ -29,11 +33,23 @@ const Navbar = () => {
       return;
     }
   };
-  const [open, setOpen] = useState(false);
   const location = useLocation();
 
+  const closeMenu = (event) => {
+    if (navRef.current && !navRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", closeMenu);
+    return () => {
+      window.removeEventListener("click", closeMenu);
+    };
+  }, [open]);
+
   return (
-    <NavbarContainer>
+    <NavbarContainer ref={navRef}>
       <InnerContainer>
         <TopContainer>
           <LogoContainer>{<Logo />}</LogoContainer>

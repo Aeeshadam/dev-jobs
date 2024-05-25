@@ -14,15 +14,15 @@ import {
 } from "../styles/JobListing.styles";
 
 const MyJobListing = () => {
-  const { myJobs } = useJob();
-
+  const { filteredMyJobs } = useJob();
+  const jobsToDisplay = filteredMyJobs();
   const formatTimeDifference = (timestamp) => {
     return formatDistanceToNow(timestamp, { addSuffix: true });
   };
 
   return (
     <JobListingContainer>
-      {myJobs.map((job) => (
+      {jobsToDisplay.map((job) => (
         <StyledJobListing key={job.id}>
           <CompanyLogo
             src={

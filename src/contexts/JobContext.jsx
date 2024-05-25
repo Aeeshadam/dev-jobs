@@ -1,4 +1,11 @@
-import { useContext, useEffect, createContext, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  createContext,
+  useState,
+  useCallback,
+} from "react";
+
 import {
   addDoc,
   collection,
@@ -21,7 +28,8 @@ function JobProvider({ children }) {
   const [filterByContract, setFilterByContract] = useState();
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
   const { currentUser } = useAuth();
-  async function fetchJobs() {
+
+  const fetchJobs = useCallback(async () => {
     try {
       setIsLoading(true);
       const jobsCollection = await getDocs(collection(db, "jobs"));
@@ -35,41 +43,46 @@ function JobProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [data]);
 
   useEffect(() => {
     fetchJobs();
   }, []);
 
-  async function addJob(newJobData) {
-    try {
-      setIsLoading(true);
-      const currentTimeStamp = new Date().getTime();
-      const newJobDataWithTimestamp = {
-        ...newJobData,
-        timestamp: currentTimeStamp,
-        postedBy: currentUser.uid,
-      };
-      const docRef = await addDoc(
-        collection(db, "jobs"),
-        newJobDataWithTimestamp
-      );
-      setData([
-        ...data,
-        { ...newJobDataWithTimestamp, firestoreId: docRef.id },
-      ]);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const addJob = useCallback(
+    async (newJobData) => {
+      try {
+        setIsLoading(true);
+        const currentTimeStamp = new Date().getTime();
+        const newJobDataWithTimestamp = {
+          ...newJobData,
+          timestamp: currentTimeStamp,
+          postedBy: currentUser.uid,
+        };
+        const docRef = await addDoc(
+          collection(db, "jobs"),
+          newJobDataWithTimestamp
+        );
+        setData([
+          ...data,
+          { ...newJobDataWithTimestamp, firestoreId: docRef.id },
+        ]);
+        await fetchJobs();
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [currentUser, fetchJobs]
+  );
 
-  async function deleteJob(firestoreId, postedBy) {
+  const deleteJob = useCallback(async (firestoreId, postedBy) => {
     try {
       setIsLoading(true);
       await deleteDoc(doc(db, "jobs", firestoreId));
       setData(data.filter((job) => job.firestoreId !== firestoreId));
+      await fetchJobs();
       return true;
     } catch (error) {
       setError(error.message);
@@ -78,30 +91,57 @@ function JobProvider({ children }) {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, []);
+
+  const filteredJobs = useCallback(() => {
+    let jobs = data;
+
+    if (searchQuery) {
+      jobs = jobs.filter((job) =>
+        job.position.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    if (filterByLocation) {
+      jobs = jobs.filter((job) =>
+        job.location.toLowerCase().includes(filterByLocation.toLowerCase())
+      );
+    }
+
+    if (filterByContract?.length > 0) {
+      jobs = jobs.filter((job) =>
+        filterByContract.includes(job.contract.toLowerCase())
+      );
+    }
+
+    return jobs;
+  }, [data, searchQuery, filterByLocation, filterByContract]);
 
   const myJobs = data.filter((job) => job.postedBy === currentUser?.uid);
 
-  const searchedJobs = searchQuery
-    ? data.filter((job) =>
+  const filteredMyJobs = useCallback(() => {
+    let jobs = myJobs;
+
+    if (searchQuery) {
+      jobs = jobs.filter((job) =>
         job.position.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : data;
+      );
+    }
 
-  const filteredJobsByLocation = filterByLocation
-    ? searchedJobs.filter((job) => {
-        return job.location
-          .toLowerCase()
-          .includes(filterByLocation.toLowerCase());
-      })
-    : searchedJobs;
+    if (filterByLocation) {
+      jobs = jobs.filter((job) =>
+        job.location.toLowerCase().includes(filterByLocation.toLowerCase())
+      );
+    }
 
-  const filteredJobsByContract =
-    filterByContract?.length > 0
-      ? filteredJobsByLocation.filter((job) =>
-          filterByContract.includes(job.contract.toLowerCase())
-        )
-      : filteredJobsByLocation;
+    if (filterByContract?.length > 0) {
+      jobs = jobs.filter((job) =>
+        filterByContract.includes(job.contract.toLowerCase())
+      );
+    }
+
+    return jobs;
+  }, [myJobs, searchQuery, filterByLocation, filterByContract]);
 
   return (
     <JobContext.Provider
@@ -119,14 +159,13 @@ function JobProvider({ children }) {
         isSmallScreen,
         setIsSmallScreen,
         fetchJobs,
-        searchedJobs,
-        filteredJobsByLocation,
+        filteredJobs,
         deleteJob,
         filterByContract,
         setFilterByContract,
-        filteredJobsByContract,
         setError,
         myJobs,
+        filteredMyJobs,
       }}
     >
       {children}

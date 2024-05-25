@@ -9,8 +9,9 @@ import Navbar from "../components/Navbar.jsx";
 import { LayOut } from "../styles/DevJobContainer.jsx";
 
 const MyJobsPage = () => {
-  const { modalIsOpen, myJobs, isLoading } = useJob();
+  const { modalIsOpen, myJobs, isLoading, filteredMyJobs } = useJob();
 
+  const jobsToDisplay = filteredMyJobs();
   return (
     <>
       <Header />
@@ -20,10 +21,14 @@ const MyJobsPage = () => {
           {modalIsOpen && <FilterModal />}
           <SearchComponent />
           {isLoading && <Message message="🔘 Loading..." />}
-          {myJobs.length === 0 && !isLoading && (
-            <Message message="There are no jobs matching your search criteria 😃" />
+          {!isLoading && myJobs.length === 0 && (
+            <Message message="⚠️ You have not posted any jobs yet!" />
           )}
-          <MyJobListing />
+          {!isLoading && myJobs.length > 0 && jobsToDisplay.length === 0 && (
+            <Message message="⚠️ No jobs found" />
+          )}
+
+          {myJobs.length > 0 && jobsToDisplay.length > 0 && <MyJobListing />}
         </StyledDevJobContainer>
       </LayOut>
     </>

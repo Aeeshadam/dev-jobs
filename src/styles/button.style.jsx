@@ -45,6 +45,7 @@ export const AnchorButton = styled.a`
   cursor: pointer;
   width: 100%;
   text-decoration: none;
+  text-align: center;
 
   &:hover {
     opacity: 0.9;

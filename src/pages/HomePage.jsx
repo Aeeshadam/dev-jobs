@@ -7,10 +7,15 @@ import JobListing from "../components/JobListing.jsx";
 import Message from "../components/Message.jsx";
 import Navbar from "../components/Navbar.jsx";
 import { LayOut } from "../styles/DevJobContainer.jsx";
+import { useEffect } from "react";
 
 const HomePage = () => {
-  const { modalIsOpen, filteredJobsByContract, isLoading } = useJob();
+  const { modalIsOpen, filteredJobs, isLoading } = useJob();
+  const jobsToDisplay = filteredJobs();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [filteredJobs]);
   return (
     <>
       <Header />
@@ -20,7 +25,7 @@ const HomePage = () => {
           {modalIsOpen && <FilterModal />}
           <SearchComponent />
           {isLoading && <Message message="🔘 Loading..." />}
-          {filteredJobsByContract.length === 0 && !isLoading && (
+          {jobsToDisplay.length === 0 && !isLoading && (
             <Message message="There are no jobs matching your search criteria 😃" />
           )}
           <JobListing />

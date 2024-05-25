@@ -5,6 +5,7 @@ import { colorStyles, optionsContract } from "../styles/CustomSelect";
 import { InputContainer, Input, PostJobTittle } from "../styles/Form.style";
 import { Button } from "../styles/button.style";
 import { useForm } from "../contexts/FormContext";
+import { useJob } from "../contexts/JobContext";
 
 const Form = () => {
   const navigateTo = useNavigate();

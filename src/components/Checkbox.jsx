@@ -45,7 +45,6 @@ const Checkbox = () => {
       ? selected.map((option) => option.value)
       : [];
     setFilterByContract(selectedValues);
-    console.log(selectedValues);
   };
 
   return (

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import PageContainer from "../components/PageContainer.jsx";
-import Logo from "../components/Logo.jsx";
 import Navbar from "../components/Navbar.jsx";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import {
