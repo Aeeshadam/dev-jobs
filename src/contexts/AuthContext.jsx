@@ -8,7 +8,6 @@ import {
 } from "firebase/auth";
 
 const auth = getAuth();
-
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {

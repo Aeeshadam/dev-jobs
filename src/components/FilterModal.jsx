@@ -30,19 +30,10 @@ const ModalContainer = styled.div`
 `;
 
 const FilterModal = () => {
-  const {
-    filterByLocation,
-    setFilterByLocation,
-    setModalIsOpen,
-    setFilterByContract,
-  } = useJob();
+  const { filterByLocation, setFilterByLocation, setModalIsOpen } = useJob();
 
   const handleLocationFilterChange = (e) => {
     setFilterByLocation(e.target.value);
-  };
-
-  const handleContractChange = (selectedOption) => {
-    setFilterByContract(selectedOption ? selectedOption.value : "");
   };
 
   const closeModal = () => {
