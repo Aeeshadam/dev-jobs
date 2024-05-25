@@ -5,9 +5,9 @@ const StyledDevJobContainer = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  padding: 0 2.4rem;
   max-width: 1460px;
   margin: 0 auto;
+  padding: 0 2.4rem;
   width: 100%;
 
   @media (min-width: 768px) {
@@ -18,7 +18,7 @@ const StyledDevJobContainer = styled.div`
 const LayOut = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
+
   justify-content: center;
   margin: -50px auto 0 auto;
   top: 0;

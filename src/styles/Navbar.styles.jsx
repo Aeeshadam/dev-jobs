@@ -4,17 +4,28 @@ import { Link } from "react-router-dom";
 const NavbarContainer = styled.nav`
   width: 100%;
   background-color: rgba(89, 100, 224, 0.5);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 50px;
+
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   z-index: 999;
+`;
+
+const InnerContainer = styled.div`
+  display: flex;
+  padding: 1rem 6rem;
+
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1460px;
 
   @media (max-width: 768px) {
-    padding: 0 20px;
     flex-direction: column;
+
+    padding: 1rem 2.4rem;
   }
 `;
 
@@ -94,4 +105,5 @@ export {
   StyledLink,
   Hamburger,
   TopContainer,
+  InnerContainer,
 };

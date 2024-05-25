@@ -1,25 +1,19 @@
-import Select from "react-select";
 import {
   SearchContainer,
   GridItem,
   SearchInput,
   Icon,
+  ClearIcon,
 } from "../styles/SearchComponent.styles";
 import SearchIconSvg from "../assets/desktop/icon-search.svg";
 import LocationIconSvg from "../assets/desktop/icon-location.svg";
 import { useJob } from "../contexts/JobContext";
-import { optionsContract, colorStyles } from "../styles/CustomSelect";
 import { SelectContainer } from "../styles/Form.style";
+import Checkbox from "./Checkbox";
 
 const DesktopSearch = () => {
-  const {
-    setSearchQuery,
-    setFilterByLocation,
-    searchQuery,
-    filterByLocation,
-    filterByContract,
-    setFilterByContract,
-  } = useJob();
+  const { setSearchQuery, setFilterByLocation, searchQuery, filterByLocation } =
+    useJob();
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -27,9 +21,12 @@ const DesktopSearch = () => {
   const handleLocationFilterChange = (e) => {
     setFilterByLocation(e.target.value);
   };
+  const handleSearchClear = () => {
+    setSearchQuery("");
+  };
 
-  const handleContractChange = (selectedOption) => {
-    setFilterByContract(selectedOption ? selectedOption.value : "");
+  const handleLocationFilterClear = () => {
+    setFilterByLocation("");
   };
 
   return (
@@ -41,6 +38,7 @@ const DesktopSearch = () => {
           value={searchQuery}
           onChange={handleSearchInputChange}
         />
+        <ClearIcon onClick={handleSearchClear}>x</ClearIcon>
       </GridItem>
       <GridItem>
         <Icon src={LocationIconSvg} />
@@ -49,18 +47,11 @@ const DesktopSearch = () => {
           value={filterByLocation}
           onChange={handleLocationFilterChange}
         />
+        <ClearIcon onClick={handleLocationFilterClear}>x</ClearIcon>
       </GridItem>
       <GridItem>
         <SelectContainer>
-          <Select
-            options={optionsContract}
-            value={optionsContract.find(
-              (option) => option.value === filterByContract
-            )}
-            onChange={handleContractChange}
-            styles={colorStyles}
-            placeholder="Filter Jobs by Contract Type "
-          />
+          <Checkbox />
         </SelectContainer>
       </GridItem>
     </SearchContainer>

@@ -65,3 +65,11 @@ export const Icon = styled.img`
 export const FilterIcon = styled(Icon)`
   cursor: pointer;
 `;
+
+export const ClearIcon = styled.p`
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+`;

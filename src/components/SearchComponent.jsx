@@ -7,13 +7,13 @@ export const SearchComponent = () => {
   const { setIsSmallScreen, isSmallScreen } = useJob();
 
   const handleResize = () => {
-    setIsSmallScreen(window.innerWidth <= 768);
+    setIsSmallScreen(window.innerWidth < 768);
   };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+    handleResize();
     return () => {
-      // eslint-disable-next-line no-undef
       window.removeEventListener("resize", handleResize);
     };
   }, []);

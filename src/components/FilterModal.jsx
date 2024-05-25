@@ -1,11 +1,10 @@
-import Select from "react-select";
 import styled from "styled-components";
 import { SearchInput, Icon, GridItem } from "../styles/SearchComponent.styles";
 import LocationIcon from "../assets/desktop/icon-location.svg";
 import { ButtonGrid } from "../styles/button.style";
 import { useJob } from "../contexts/JobContext";
-import { optionsContract, colorStyles } from "../styles/CustomSelect";
 import { SelectContainer } from "../styles/Form.style";
+import Checkbox from "./Checkbox";
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -18,6 +17,7 @@ const ModalBackground = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
+  padding: 4rem;
 `;
 
 const ModalContainer = styled.div`
@@ -26,6 +26,7 @@ const ModalContainer = styled.div`
   padding: 2.4rem;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
+  width: 100%;
 `;
 
 const FilterModal = () => {
@@ -33,7 +34,6 @@ const FilterModal = () => {
     filterByLocation,
     setFilterByLocation,
     setModalIsOpen,
-    filterByContract,
     setFilterByContract,
   } = useJob();
 
@@ -61,15 +61,7 @@ const FilterModal = () => {
         </GridItem>
         <GridItem>
           <SelectContainer>
-            <Select
-              options={optionsContract}
-              value={optionsContract.find(
-                (option) => option.value === filterByContract
-              )}
-              onChange={handleContractChange}
-              styles={colorStyles}
-              placeholder="Filter Jobs by Contract Type "
-            />
+            <Checkbox />
           </SelectContainer>
         </GridItem>
 

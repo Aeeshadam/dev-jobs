@@ -96,11 +96,12 @@ function JobProvider({ children }) {
       })
     : searchedJobs;
 
-  const filteredJobsByContract = filterByContract
-    ? filteredJobsByLocation.filter((job) => {
-        return job.contract === filterByContract;
-      })
-    : filteredJobsByLocation;
+  const filteredJobsByContract =
+    filterByContract?.length > 0
+      ? filteredJobsByLocation.filter((job) =>
+          filterByContract.includes(job.contract.toLowerCase())
+        )
+      : filteredJobsByLocation;
 
   return (
     <JobContext.Provider

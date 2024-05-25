@@ -10,6 +10,7 @@ import {
   StyledLink,
   Hamburger,
   TopContainer,
+  InnerContainer,
 } from "../styles/Navbar.styles";
 
 const Navbar = () => {
@@ -33,52 +34,54 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <TopContainer>
-        <LogoContainer>{<Logo />}</LogoContainer>
+      <InnerContainer>
+        <TopContainer>
+          <LogoContainer>{<Logo />}</LogoContainer>
 
-        <Hamburger onClick={() => setOpen(!open)}>
-          <div></div>
-          <div></div>
-          <div></div>
-        </Hamburger>
-      </TopContainer>
-      <Menu open={open}>
-        {currentUser ? (
-          <>
+          <Hamburger onClick={() => setOpen(!open)}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </Hamburger>
+        </TopContainer>
+        <Menu open={open}>
+          {currentUser ? (
+            <>
+              <MenuItem>
+                <StyledLink
+                  to="/"
+                  className={location.pathname === "/" ? "active" : ""}
+                >
+                  Home
+                </StyledLink>
+              </MenuItem>
+              <MenuItem>
+                <StyledLink
+                  to="/my-jobs"
+                  className={location.pathname === "/my-jobs" ? "active" : ""}
+                >
+                  My jobs
+                </StyledLink>
+              </MenuItem>
+              <MenuItem>
+                <StyledLink
+                  to="/post-job"
+                  className={location.pathname === "/post-job" ? "active" : ""}
+                >
+                  Post a job
+                </StyledLink>
+              </MenuItem>
+              <MenuItem>
+                <StyledLink onClick={handleLogout}>Sign Out</StyledLink>
+              </MenuItem>
+            </>
+          ) : (
             <MenuItem>
-              <StyledLink
-                to="/"
-                className={location.pathname === "/" ? "active" : ""}
-              >
-                Home
-              </StyledLink>
+              <StyledLink to="/login"> Log In</StyledLink>
             </MenuItem>
-            <MenuItem>
-              <StyledLink
-                to="/my-jobs"
-                className={location.pathname === "/my-jobs" ? "active" : ""}
-              >
-                My jobs
-              </StyledLink>
-            </MenuItem>
-            <MenuItem>
-              <StyledLink
-                to="/post-job"
-                className={location.pathname === "/post-job" ? "active" : ""}
-              >
-                Post a job
-              </StyledLink>
-            </MenuItem>
-            <MenuItem>
-              <StyledLink onClick={handleLogout}>Sign Out</StyledLink>
-            </MenuItem>
-          </>
-        ) : (
-          <MenuItem>
-            <StyledLink to="/login"> Log In</StyledLink>
-          </MenuItem>
-        )}
-      </Menu>
+          )}
+        </Menu>
+      </InnerContainer>
     </NavbarContainer>
   );
 };
