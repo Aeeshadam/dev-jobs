@@ -15,17 +15,16 @@ const NavbarContainer = styled.nav`
 
 const InnerContainer = styled.div`
   display: flex;
-  padding: 1rem 6rem;
-
   justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1460px;
+  flex-direction: column;
+  padding: 1rem 2.4rem;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    padding: 1rem 2.4rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: 1rem 6rem;
   }
 `;
 
@@ -35,25 +34,27 @@ const LogoContainer = styled.div`
 `;
 
 const Menu = styled.ul`
-  display: flex;
   list-style: none;
-  justify-content: flex-end;
   width: 100%;
   margin: 0;
+  justify-content: center;
+  flex-direction: column;
+  display: ${(props) => (props.open ? "block" : "none")};
 
-  @media (max-width: 768px) {
-    justify-content: center;
-    flex-direction: column;
-    display: ${(props) => (props.open ? "block" : "none")};
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+    flex-direction: row;
+    display: flex;
   }
 `;
 
 const MenuItem = styled.li`
-  margin: 0 15px;
+  text-align: center;
+  margin: 10px 0;
 
-  @media (max-width: 768px) {
-    margin: 10px 0;
-    text-align: center;
+  @media (min-width: 768px) {
+    margin: 0 15px;
+    width: max-content;
   }
 `;
 
@@ -71,11 +72,11 @@ const StyledLink = styled(Link)`
 `;
 
 const Hamburger = styled.div`
-  display: none;
   cursor: pointer;
+  display: block;
 
-  @media (max-width: 768px) {
-    display: block;
+  @media (min-width: 768px) {
+    display: none;
   }
 
   div {
@@ -91,10 +92,7 @@ const TopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
+  width: 100%;
 `;
 
 export {
