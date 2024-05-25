@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
-import desktopHeaderSvg from "../assets/desktop/bg-pattern-header.svg";
-
 export const HeaderContainer = styled.div`
   width: 100vw;
 `;
 export const StyledHeader = styled.div`
-  background-image: url(${desktopHeaderSvg});
+  background-image: url("/bg-pattern-header.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
