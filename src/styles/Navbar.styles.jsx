@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const NavbarContainer = styled.nav`
   width: 100%;
   background-color: rgba(89, 100, 224, 0.5);
-
   position: fixed;
   display: flex;
   align-items: center;
@@ -21,6 +20,10 @@ const InnerContainer = styled.div`
   max-width: 1460px;
   flex-direction: row;
   padding: 1rem 2.4rem;
+
+  @media (min-width: 768px) {
+    padding: 1rem 6rem;
+  }
 `;
 
 const LogoContainer = styled.div`

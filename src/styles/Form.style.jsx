@@ -51,7 +51,7 @@ const PostJobTittle = styled.div`
   background-color: var(--color-very-dark);
   color: var(--color-white);
   border-radius: 0.8rem;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 3rem;
   font-weight: 600;
 

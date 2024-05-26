@@ -121,30 +121,6 @@ function JobProvider({ children }) {
 
   const myJobs = data.filter((job) => job.postedBy === currentUser?.uid);
 
-  const filteredMyJobs = useCallback(() => {
-    let jobs = myJobs;
-
-    if (searchQuery) {
-      jobs = jobs.filter((job) =>
-        job.position.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    if (filterByLocation) {
-      jobs = jobs.filter((job) =>
-        job.location.toLowerCase().includes(filterByLocation.toLowerCase())
-      );
-    }
-
-    if (filterByContract?.length > 0) {
-      jobs = jobs.filter((job) =>
-        filterByContract.includes(job.contract.toLowerCase())
-      );
-    }
-
-    return jobs;
-  }, [myJobs, searchQuery, filterByLocation, filterByContract]);
-
   return (
     <JobContext.Provider
       value={{
@@ -167,7 +143,6 @@ function JobProvider({ children }) {
         setFilterByContract,
         setError,
         myJobs,
-        filteredMyJobs,
       }}
     >
       {children}
