@@ -118,3 +118,7 @@ textarea::placeholder {
 select {
   min-height: 50px;
 }
+
+.Toastify__toast-container {
+  z-index: 99999;
+}

@@ -1,4 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -40,6 +41,7 @@ const AuthProvider = ({ children }) => {
         loginPassword
       );
       setCurrentUser(user);
+      toast.success("Logged in successfully");
       return true;
     } catch (error) {
       setAuthError(error.message);
@@ -55,6 +57,7 @@ const AuthProvider = ({ children }) => {
         "password"
       );
       setCurrentUser(user);
+      toast.success("Logged in successfully as demo user");
       return true;
     } catch (error) {
       setAuthError(error.message);
@@ -74,9 +77,9 @@ const AuthProvider = ({ children }) => {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       setCurrentUser(user);
+      toast.success("Signed up successfully");
       return true;
     } catch (error) {
-      console.log("SignUp Error:", error.message);
       setAuthError(error.message);
       return false;
     }
@@ -85,6 +88,7 @@ const AuthProvider = ({ children }) => {
   const logOut = async () => {
     await signOut(auth);
     setCurrentUser(null);
+    toast("Logged out");
     emptyState();
   };
 

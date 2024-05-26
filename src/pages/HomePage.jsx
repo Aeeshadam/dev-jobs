@@ -16,6 +16,7 @@ const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [filteredJobs]);
+
   return (
     <>
       <Header />

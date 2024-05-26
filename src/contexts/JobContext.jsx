@@ -5,7 +5,7 @@ import {
   useState,
   useCallback,
 } from "react";
-
+import { toast } from "react-toastify";
 import {
   addDoc,
   collection,
@@ -68,6 +68,7 @@ function JobProvider({ children }) {
           { ...newJobDataWithTimestamp, firestoreId: docRef.id },
         ]);
         await fetchJobs();
+        toast.success("Job posted successfully!");
       } catch (error) {
         console.error(error);
       } finally {
@@ -83,6 +84,7 @@ function JobProvider({ children }) {
       await deleteDoc(doc(db, "jobs", firestoreId));
       setData(data.filter((job) => job.firestoreId !== firestoreId));
       await fetchJobs();
+      toast.success("Job deleted successfully!");
       return true;
     } catch (error) {
       setError(error.message);
