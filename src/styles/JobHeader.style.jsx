@@ -9,10 +9,12 @@ const JobDetailsHeader = styled.div`
   border-radius: 0.8rem;
   background-color: var(--color-very-dark);
   position: relative;
+  margin-top: 2rem;
 
   @media (min-width: 768px) {
     flex-direction: row;
     text-align: left;
+    margin-top: 0;
   }
 `;
 

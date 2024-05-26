@@ -19,13 +19,8 @@ const InnerContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 1460px;
-  flex-direction: column;
+  flex-direction: row;
   padding: 1rem 2.4rem;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    padding: 1rem 6rem;
-  }
 `;
 
 const LogoContainer = styled.div`
@@ -39,18 +34,14 @@ const Menu = styled.ul`
   margin: 0;
   justify-content: center;
   flex-direction: column;
-  display: ${(props) => (props.open ? "block" : "none")};
-
-  @media (min-width: 768px) {
-    justify-content: flex-end;
-    flex-direction: row;
-    display: flex;
-  }
+  justify-content: flex-end;
+  flex-direction: row;
+  display: flex;
 `;
 
 const MenuItem = styled.li`
   text-align: center;
-  margin: 10px 0;
+  margin: 10px;
 
   @media (min-width: 768px) {
     margin: 0 15px;
@@ -71,28 +62,18 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Hamburger = styled.div`
-  cursor: pointer;
-  display: block;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-
-  div {
-    width: 25px;
-    height: 3px;
-    background-color: #fff;
-    margin: 5px;
-    transition: 0.3s;
-  }
-`;
-
 const TopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+`;
+
+const NavIcon = styled.img`
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+  cursor: pointer;
 `;
 
 export {
@@ -101,7 +82,7 @@ export {
   Menu,
   MenuItem,
   StyledLink,
-  Hamburger,
   TopContainer,
   InnerContainer,
+  NavIcon,
 };

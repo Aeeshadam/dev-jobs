@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Logo from "./Logo";
@@ -8,14 +8,17 @@ import {
   Menu,
   MenuItem,
   StyledLink,
-  Hamburger,
   TopContainer,
   InnerContainer,
+  NavIcon,
 } from "../styles/Navbar.styles";
+import { TertiaryButton } from "../styles/button.style";
+import HomeIconSVG from "../assets/mobile/house-solid.svg";
+import MyJobsIconSVG from "../assets/mobile/folder-solid.svg";
+import AddIconSvg from "../assets/mobile/plus-solid.svg";
+import logOutIconSVG from "../assets/mobile/right-from-bracket-solid.svg";
 
 const Navbar = () => {
-  const navRef = useRef();
-  const [open, setOpen] = useState(false);
   const { currentUser, logOut } = useAuth();
   const navigateTo = useNavigate();
 
@@ -35,32 +38,13 @@ const Navbar = () => {
   };
   const location = useLocation();
 
-  const closeMenu = (event) => {
-    if (navRef.current && !navRef.current.contains(event.target)) {
-      setOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", closeMenu);
-    return () => {
-      window.removeEventListener("click", closeMenu);
-    };
-  }, [open]);
-
   return (
-    <NavbarContainer ref={navRef}>
+    <NavbarContainer>
       <InnerContainer>
         <TopContainer>
           <LogoContainer>{<Logo />}</LogoContainer>
-
-          <Hamburger onClick={() => setOpen(!open)}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </Hamburger>
         </TopContainer>
-        <Menu open={open}>
+        <Menu>
           {currentUser ? (
             <>
               <MenuItem>
@@ -68,7 +52,11 @@ const Navbar = () => {
                   to="/"
                   className={location.pathname === "/" ? "active" : ""}
                 >
-                  Home
+                  {window.innerWidth < 768 ? (
+                    <NavIcon src={HomeIconSVG} alt="home" />
+                  ) : (
+                    "Home"
+                  )}
                 </StyledLink>
               </MenuItem>
               <MenuItem>
@@ -76,7 +64,11 @@ const Navbar = () => {
                   to="/my-jobs"
                   className={location.pathname === "/my-jobs" ? "active" : ""}
                 >
-                  My jobs
+                  {window.innerWidth < 768 ? (
+                    <NavIcon src={MyJobsIconSVG} alt="my jobs" />
+                  ) : (
+                    "My Jobs"
+                  )}
                 </StyledLink>
               </MenuItem>
               <MenuItem>
@@ -84,16 +76,28 @@ const Navbar = () => {
                   to="/post-job"
                   className={location.pathname === "/post-job" ? "active" : ""}
                 >
-                  Post a job
+                  {window.innerWidth < 768 ? (
+                    <NavIcon src={AddIconSvg} alt="Post job" />
+                  ) : (
+                    "Post Job"
+                  )}
                 </StyledLink>
               </MenuItem>
               <MenuItem>
-                <StyledLink onClick={handleLogout}>Sign Out</StyledLink>
+                <StyledLink onClick={handleLogout}>
+                  {window.innerWidth < 768 ? (
+                    <NavIcon src={logOutIconSVG} alt="log out" />
+                  ) : (
+                    "Log Out"
+                  )}
+                </StyledLink>
               </MenuItem>
             </>
           ) : (
             <MenuItem>
-              <StyledLink to="/login"> Log In</StyledLink>
+              <TertiaryButton>
+                <StyledLink to="/login">Log in </StyledLink>
+              </TertiaryButton>
             </MenuItem>
           )}
         </Menu>
